@@ -1,0 +1,149 @@
+/* Main content styling */
+.main-content {
+    margin-left: 240px;
+    padding: 20px;
+    /* background-color: #f4f6f9;  */
+    background-color: #f4f4f9;
+}
+
+.customer-overview {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    padding: 10px;
+    font-size: 1em;
+    width: 300px;
+  }
+  
+  h1 {
+    font-size: 2em;
+    margin: 0;
+  }
+  
+  .customer-list {
+    overflow-x: auto;
+  }
+  
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .tag {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+  }
+  
+  .high-risk {
+    background-color: #f44336;
+    color: white;
+  }
+
+  .medium-risk {
+    background-color: #e6ad12;
+    color: white;
+  }
+
+
+  .low-risk {
+    background-color: #51e56a;
+    color: white;
+  }
+  
+  td a {
+    padding: 8px 16px;
+    background-color: #2196F3;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
+  td a:hover {
+    background-color: #053f75;
+    text-decoration: none;
+  }
+
+  #load-more{
+    margin-top: 10px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .main-content{
+        margin-left: 60px;
+        padding: 0;
+    }
+}
+
+
+
+/* Style for larger screens */
+.customer-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.customer-list th, .customer-list td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.customer-list th {
+    background-color: #f4f4f4;
+}
+
+/* Style for smaller screens */
+@media (max-width: 768px) {
+    .customer-list table, 
+    .customer-list thead, 
+    .customer-list tbody, 
+    .customer-list th, 
+    .customer-list td, 
+    .customer-list tr {
+        display: block;
+    }
+    
+    /* Hide table headers */
+    .customer-list thead tr {
+        display: none;
+    }
+    
+    /* Card style for each customer row */
+    .customer-list tbody tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: #fff;
+    }
+
+    /* Display each cell as a row with a label */
+    .customer-list td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    /* Custom label for each data row on small screens */
+    .customer-list td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #333;
+        margin-right: 10px;
+    }
+}
+
+  

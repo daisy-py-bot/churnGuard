@@ -1,0 +1,84 @@
+/* Sidebar Styling */
+.sidebar {
+    background-color: #333;
+    height: 100vh;
+    position: fixed;
+    width: 250px;
+    color: white;
+    padding-top: 20px;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+.sidebar a:hover {
+    background-color: rgb(15, 42, 122);
+    text-decoration: none;
+}
+
+.sidebar i {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* Full width on smaller screens */
+        position: relative;
+        height: auto;
+        /* background-color: #2196F3; */
+    }
+
+    .sidebar a {
+        text-align: center; /* Center align links in the sidebar on small screens */
+    }
+
+
+    .sidebar {
+        display: none; /* Hide sidebar by default on small screens */
+    }
+
+    .sidebar.toggle {
+        display: block; /* Toggle the sidebar visibility when the 'toggle' class is added */
+    }
+
+    
+}
+
+@media screen and (max-width: 768px) {
+    .main-content{
+        margin-left: 60px;
+        padding: 0;
+    }
+}
+
+/* Button to toggle sidebar */
+.sidebar-toggle {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar-toggle {
+        display: block; /* Show toggle button on small screens */
+    }
+
+}

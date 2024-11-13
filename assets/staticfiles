@@ -1,0 +1,103 @@
+-- Database: churn_guard
+
+CREATE DATABASE IF NOT EXISTS churn_guard;
+USE churn_guard;
+
+
+
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    Role ENUM('customer', 'bank_employee') NOT NULL,
+    DateJoined TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    LastLogin TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PhoneNumber VARCHAR(15),
+    Status ENUM('active', 'inactive', 'suspended') DEFAULT 'active',
+    RegionID INT,
+    Address VARCHAR(255),
+    AccountType VARCHAR(50),
+    FOREIGN KEY (RegionID) REFERENCES Regions(RegionID)
+);
+
+
+CREATE TABLE CustomerFeedback (
+    FeedbackID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    FeedbackText TEXT NOT NULL,
+    SentimentScore DECIMAL(3, 2),
+    SentimentLabel ENUM('negative', 'neutral', 'positive'),
+    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ResolvedStatus ENUM('resolved', 'unresolved') DEFAULT 'unresolved',
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+-- store information about each customer's background and attributes that may influence their engagement and satisfaction. 
+-- This data helps in segmenting customers and analyzing trends related to demographics and churn
+CREATE TABLE CustomerDemographics (
+    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    Age INT,
+    Gender ENUM('M', 'F', 'Other'),
+    Region VARCHAR(50),
+    IncomeLevel ENUM('Low', 'Medium', 'High'),
+    AccountType ENUM('Savings', 'Checking', 'Business', 'Other'),
+    DateJoined DATE,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+CREATE TABLE Transactions (
+    TransactionID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT NOT NULL,
+    TransactionDate DATE,
+    TransactionAmount DECIMAL(10, 2),
+    TransactionType ENUM('Deposit', 'Withdrawal', 'Payment', 'Transfer'),
+    BalanceAfterTransaction DECIMAL(10, 2),
+    BranchLocation VARCHAR(100),
+    FOREIGN KEY (CustomerID) REFERENCES CustomerDemographics(CustomerID)
+);
+
+
+CREATE TABLE ChurnPredictions (
+    PredictionID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT NOT NULL,
+    PredictionDate DATE,
+    ChurnProbability DECIMAL(3, 2),
+    RiskLevel ENUM('Low', 'Medium', 'High'),
+    PredictionNotes VARCHAR(255),
+    FollowUpStatus ENUM('Pending', 'In Progress', 'Completed'),
+    FOREIGN KEY (CustomerID) REFERENCES CustomerDemographics(CustomerID)
+);
+
+--The CustomerInteractions table will capture interactions between the bank and its customers, 
+--including customer service calls, emails, and in-person meetings. This table will help analyze the effectiveness 
+--of customer service efforts and identify any patterns associated with customer satisfaction or churn.
+CREATE TABLE CustomerInteractions (
+    InteractionID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT NOT NULL,
+    InteractionDate DATE,
+    InteractionType ENUM('Call', 'Email', 'Meeting', 'Chat', 'Other'),
+    InteractionDescription VARCHAR(255),
+    InteractionOutcome ENUM('Resolved', 'Escalated', 'Pending'),
+    FollowUpRequired BOOLEAN,
+    FollowUpDate DATE,
+    FOREIGN KEY (CustomerID) REFERENCES CustomerDemographics(CustomerID)
+);
+
+
+CREATE TABLE Regions (
+    RegionID INT PRIMARY KEY AUTO_INCREMENT,
+    RegionName VARCHAR(100) NOT NULL,
+    Country VARCHAR(100),
+    RegionDescription VARCHAR(255),
+    CustomerCount INT
+);
+
+
+
+
+
+
+
+
