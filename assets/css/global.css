@@ -82,3 +82,26 @@
     }
 
 }
+
+
+
+
+/* Quick links */
+#quick-links-container{
+    margin-top: 100px;
+
+}
+.pill-links {
+    margin-top: 20px;
+}
+.pill-links .nav-link {
+    border-radius: 50px; /* Make the pills rounded */
+    font-size: 1.1em; /* Slightly larger text */
+    padding: 10px 20px; /* Add padding for better spacing */
+    background-color: rgb(207, 156, 156, 0.3);
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.pill-links .nav-link:hover {
+    background-color: #ddd; /* Light hover effect */
+}

@@ -3,212 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Feedback Form</title>
+    <title>Customer Distribution Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-        /* Background for the form container */
-        body {
-            background-color: #f8f9fa;
-        }
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        /* Style for the headings */
-        h3 {
-            color: black;
-            /* border-bottom: 2px solid #96b6d9; */
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-        }
-        /* Input and textarea styling */
-        .form-control {
-            border-radius: 5px;
-            border: 1px solid #ced4da;
-        }
-        /* Submit button styling */
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-            transition: background-color 0.3s;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-        /* Label styling */
-        label {
-            font-weight: 600;
-            color: #495057;
-        }
-        /* Section background */
-        .section {
-            background-color: #e9f7fd;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+        #map {
+            height: 400px;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
-    <div class="container my-5">
-        <h2 class="text-center mb-4">Customer Feedback Form</h2>
-        <form action="/submit-feedback" method="POST">
-            <!-- Personal Information -->
-            <div class="section">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
-                </div>
-            
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-            
-                <div class="form-group">
-                    <label for="feedbackMessage">Feedback Message</label>
-                    <textarea class="form-control" id="feedbackMessage" name="feedbackMessage" rows="4" required></textarea>
-                </div>
-            </div>
+<div id="map"></div>
 
-            <!-- Service Quality Feedback -->
-            <h3>Service Quality Feedback</h3>
-            <div class="section">
-                <div class="form-group">
-                    <label for="overallSatisfaction">How would you rate the quality of our service?</label>
-                    <select class="form-control" id="overallSatisfaction" name="overallSatisfaction" required>
-                        <option value="1">1 - Very Poor</option>
-                        <option value="2">2 - Poor</option>
-                        <option value="3">3 - Average</option>
-                        <option value="4">4 - Good</option>
-                        <option value="5">5 - Excellent</option>
-                    </select>
-                </div>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>// Assume groupedData is already aggregated from your database
+    const groupedData = [
+        { location: 'Zimbabwe', count: 50, averageChurn: 0.85, lat: -19.0154, lng: 29.1549 },
+        { location: 'USA', count: 200, averageChurn: 0.3, lat: 37.0902, lng: -95.7129 },
+        { location: 'Ghana', count: 120, averageChurn: 0.6, lat: 7.9465, lng: -1.0232 }
+    ];
+    
+    // Function to determine the color based on average churn
+    const getColor = (averageChurn) => {
+        if (averageChurn > 0.7) return 'red'; // High Risk
+        if (averageChurn > 0.4) return 'yellow'; // Medium Risk
+        return 'green'; // Low Risk
+    };
+    
+    // Initialize the map
+    const map = L.map('map').setView([20, 0], 2);  // Zoom and center the map
+    
+    // Add OpenStreetMap tile layer to the map
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    // Loop through each location and create a circle marker
+    groupedData.forEach(data => {
+        const color = getColor(data.averageChurn);
+    
+        L.circleMarker([data.lat, data.lng], {
+            radius: 12,
+            fillColor: color,
+            color: color,
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.7
+        })
+        .bindPopup(`
+            <b>Location: ${data.location}</b><br>
+            Number of Customers: ${data.count}<br>
+            Average Churn Prediction: ${(data.averageChurn * 100).toFixed(2)}%<br>
+            Risk Category: ${data.averageChurn > 0.7 ? 'High Risk' : (data.averageChurn > 0.4 ? 'Medium Risk' : 'Low Risk')}
+        `)
+        .addTo(map);
+    });
+    
+</script>
 
-                <div class="form-group">
-                    <label for="serviceSpeed">Was your issue resolved in a timely manner?</label>
-                    <select class="form-control" id="serviceSpeed" name="serviceSpeed" required>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            
-                <div class="form-group">
-                    <label for="customerSupportExperience">Please rate your customer support experience:</label>
-                    <select class="form-control" id="customerSupportExperience" name="customerSupportExperience" required>
-                        <option value="1">1 - Very Poor</option>
-                        <option value="2">2 - Poor</option>
-                        <option value="3">3 - Average</option>
-                        <option value="4">4 - Good</option>
-                        <option value="5">5 - Excellent</option>
-                    </select>
-                </div>
-            </div>
-        
-            <!-- Product/Service Feedback -->
-            <h3>Product/Service Feedback</h3>
-            <div class="section">
-                <div class="form-group">
-                    <label for="productQuality">How satisfied are you with the product's quality?</label>
-                    <select class="form-control" id="productQuality" name="productQuality" required>
-                        <option value="1">1 - Very Poor</option>
-                        <option value="2">2 - Poor</option>
-                        <option value="3">3 - Average</option>
-                        <option value="4">4 - Good</option>
-                        <option value="5">5 - Excellent</option>
-                    </select>
-                </div>
-            
-                <div class="form-group">
-                    <label for="productFeature">Is there any feature you think could be improved?</label>
-                    <textarea class="form-control" id="productFeature" name="productFeature" rows="4"></textarea>
-                </div>
-            </div>
-
-            <!-- Experience/Interaction Feedback -->
-            <h3>Experience/Interaction Feedback</h3>
-            <div class="section">
-                <div class="form-group">
-                    <label for="easeOfUse">How easy was it to find the information you needed on our website?</label>
-                    <select class="form-control" id="easeOfUse" name="easeOfUse" required>
-                        <option value="1">1 - Very Difficult</option>
-                        <option value="2">2 - Difficult</option>
-                        <option value="3">3 - Neutral</option>
-                        <option value="4">4 - Easy</option>
-                        <option value="5">5 - Very Easy</option>
-                    </select>
-                </div>
-            
-                <div class="form-group">
-                    <label for="navigationExperience">Was the user interface intuitive and easy to use?</label>
-                    <select class="form-control" id="navigationExperience" name="navigationExperience" required>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            
-                <div class="form-group">
-                    <label for="encounteredDifficulties">Did you encounter any difficulties while navigating our website?</label>
-                    <select class="form-control" id="encounteredDifficulties" name="encounteredDifficulties" required>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            </div>
-        
-            <!-- Customer Expectations -->
-            <h3>Customer Expectations</h3>
-            <div class="section">
-                <div class="form-group">
-                    <label for="expectations">How well did we meet your expectations?</label>
-                    <select class="form-control" id="expectations" name="expectations" required>
-                        <option value="1">1 - Not at all</option>
-                        <option value="2">2 - Below Expectations</option>
-                        <option value="3">3 - Met Expectations</option>
-                        <option value="4">4 - Exceeded Expectations</option>
-                        <option value="5">5 - Far Exceeded Expectations</option>
-                    </select>
-                </div>
-            
-                <div class="form-group">
-                    <label for="recommendationLikelihood">How likely are you to recommend us to a friend or colleague?</label>
-                    <select class="form-control" id="recommendationLikelihood" name="recommendationLikelihood" required>
-                        <option value="1">1 - Not likely</option>
-                        <option value="2">2 - Unlikely</option>
-                        <option value="3">3 - Neutral</option>
-                        <option value="4">4 - Likely</option>
-                        <option value="5">5 - Very Likely</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Follow-up Requests -->
-            <h3>Follow-up Requests</h3>
-            <div class="section">
-                <div class="form-group">
-                    <label for="followUpContact">Would you like to be contacted about your feedback?</label>
-                    <select class="form-control" id="followUpContact" name="followUpContact" required>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            
-                <div class="form-group">
-                    <label for="contactMethod">Preferred method of contact?</label>
-                    <select class="form-control" id="contactMethod" name="contactMethod">
-                        <option value="email">Email</option>
-                        <option value="phone">Phone</option>
-                        <option value="text">Text</option>
-                    </select>
-                </div>
-            </div>
-            
-            <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary btn-block mt-4">Submit Feedback</button>
-        </form>
-    </div>
 </body>
 </html>
