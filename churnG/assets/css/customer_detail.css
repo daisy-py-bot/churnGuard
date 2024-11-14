@@ -1,0 +1,84 @@
+/* Main content styling */
+.main-content {
+    margin-left: 240px;
+    padding: 20px;
+    /* background-color: #f4f6f9;  */
+    background-color: #f4f4f9;
+}
+h1{
+    text-align: center;
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-left: 20px;
+}
+
+/* Profile Section */
+.customer-profile p {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+/* Account History Table */
+.account-history table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.account-history th, .account-history td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Churn Prediction and Interaction History */
+.churn-prediction p, .interaction-history ul li {
+    margin: 8px 0;
+}
+
+/* Notes Section */
+.notes-section textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 4px;
+    resize: vertical;
+    border: 1px solid #ddd;
+}
+
+.notes-section button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.notes-section button:hover {
+    background-color: #0056b3;
+}
+
+/* Tags Section */
+.tags-section button {
+    display: inline-block;
+    margin-right: 8px;
+    padding: 6px 12px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tags-section button:hover {
+    background-color: #218838;
+}

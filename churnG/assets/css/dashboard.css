@@ -1,0 +1,198 @@
+
+/* Main content styling */
+.main-content {
+    margin-left: 240px;
+    padding: 20px;
+    /* background-color: #f4f6f9;  */
+    background-color: #f4f4f9;
+}
+.header {
+    /* background-color: rgb(22, 59, 171, 0.8); */
+    color: blue;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+}
+.widget {
+    /* background-color: rgb(128, 128, 128, 0.1); */
+    /* background-color: rgb(120, 182, 236); */
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 100px;
+    margin-top: 60px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.widget h4{
+    /* background-color: #2206d7; */
+    background-color: #333;
+    color: white; /* Dark blue color for the heading */
+    font-family: 'Arial', sans-serif; /* Clean and modern font */
+    font-size: 1.5em; /* Slightly larger font size */
+    margin-bottom: 10px; /* Space below the heading */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 24px;
+}
+
+/* Video styling */
+.intro-video {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Styling for feedback overview */
+/* stop scrolling when someone hovers */
+.feedback-container:hover .feedback-list {
+    animation-play-state: paused;
+}
+
+
+
+.feedback-container {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    margin: auto;
+    overflow: hidden;
+    /* background: rgb(128, 128, 128, 0.7); */
+    background: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    position: relative;
+}
+
+/* Feedback list container */
+.feedback-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    animation: scrollUp 25s linear infinite;
+}
+
+/* Base chat bubble styling */
+.feedback-item {
+    padding: 1rem;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    width: 80%;
+    max-width: 90%;
+    margin: 0 auto;
+    position: relative;
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Positive feedback styling */
+.positive-feedback {
+    background-color: rgb(80, 180, 135); /* Green background for positive feedback */
+    /* background-color: rgbx(2, 137, 2); */
+}
+
+/* Negative feedback styling */
+.negative-feedback {
+    background-color: rgb(233, 105, 105); /* Red background for negative feedback */
+}
+
+/* Adding a "tail" to the chat bubble */
+.feedback-item::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-color: inherit;
+    border-left: 0;
+    border-bottom: 0;
+    margin-top: -5px;
+}
+
+/* Seamless scroll animation */
+@keyframes scrollUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+
+
+
+/* Dashboard Container */
+.dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.dashboard h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Cards Container */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Individual Card */
+.card {
+    /* background-color: #1f3a7b; */
+    background-color: #2196F3;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1 1 calc(33% - 20px); /* Make cards flexible, 3 cards per row */
+    min-width: 100px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Card hover effect */
+}
+
+.card h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Specific Card Color Styling */
+#total-customers {
+    color: #ffcc00; /* Golden for Total Customers */
+}
+
+#total-accounts {
+    color: #4caf50; /* Green for Total Accounts */
+}
+
+#avg-age {
+    color: #03a9f4; /* Blue for Average Age */
+}
+
+#churn-rate {
+    color: #f44336; /* Red for Churn Rate */
+}
+
+#avg-tenure {
+    color: #ff9800; /* Orange for Location Percentage */
+}
+
+
+
+
+
+
+
