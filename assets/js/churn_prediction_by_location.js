@@ -1,3 +1,5 @@
+// get the labels from the locations on the server
+// get the average churn rate per the locations on the server
 
     // Initial data for churn prediction per service
     const locationData = {

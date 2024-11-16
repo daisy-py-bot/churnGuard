@@ -7,96 +7,103 @@
     <link rel="stylesheet" href="../assets/css/global.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/feedback_notes.css">
 </head>
 <body>
-    <div class="container mt-5">
-        <h2>Customer Feedback & Notes</h2>
-
-        <!-- Feedback Form -->
-        <section class="feedback-form mt-4">
-            <h4>Log Customer Feedback</h4>
-            <form id="feedbackForm">
-                <div class="form-group">
-                    <label for="customerId">Customer ID:</label>
-                    <input type="text" id="customerId" class="form-control" placeholder="Enter Customer ID">
-                </div>
-                <div class="form-group">
-                    <label for="feedbackType">Feedback Type:</label>
-                    <select id="feedbackType" class="form-control">
-                        <option value="complaint">Complaint</option>
-                        <option value="compliment">Compliment</option>
-                        <option value="suggestion">Suggestion</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="feedbackText">Feedback:</label>
-                    <textarea id="feedbackText" class="form-control" rows="4" placeholder="Enter feedback details"></textarea>
-                </div>
-                <button type="button" class="btn btn-primary" onclick="submitFeedback()">Submit Feedback</button>
-            </form>
-        </section>
-
-        <!-- Feedback List -->
-        <section class="feedback-list mt-5">
-            <h4>Customer Feedback History</h4>
-            <div class="list-group" id="feedbackHistory">
-                <!-- Sample feedback entry -->
-                <div class="list-group-item">
-                    <h5>John Doe - <small>12/01/2024</small></h5>
-                    <p>Type: <strong>Complaint</strong></p>
-                    <p>Details: The customer reported an issue with online banking login.</p>
-                </div>
-                <!-- More feedback entries will be dynamically added here -->
-            </div>
-        </section>
-
-        <!-- Internal Comments Section -->
-        <section class="internal-notes mt-5">
-            <h4>Internal Notes</h4>
-            <form id="notesForm">
-                <div class="form-group">
-                    <label for="noteText">Add Note:</label>
-                    <textarea id="noteText" class="form-control" rows="3" placeholder="Enter internal note"></textarea>
-                </div>
-                <button type="button" class="btn btn-secondary" onclick="addNote()">Add Note</button>
-            </form>
-
-            <div class="notes-list mt-4" id="notesList">
-                <!-- Sample note entry -->
-                <div class="list-group-item">
-                    <h6>Follow-up on complaint regarding transaction delay.</h6>
-                    <small>Posted on 11/30/2024</small>
-                </div>
-                <!-- More notes will be dynamically added here -->
-            </div>
-        </section>
+    <!-- sidebar -->
+         <!-- Sidebar -->
+    <div class="sidebar">
+        <h3 class="text-center py-4">Bank of America</h3>
+        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="customer_overview.html"><i class="fas fa-tachometer-alt"></i> Customer Overview</a>
+        <a href="customer_detail.html"><i class="fas fa-comments"></i> Customer Details</a>
+        <a href="report_page.html"><i class="fas fa-chart-line"></i> Reports</a>
+        <a href="feedback_notes.html"><i class="fas fa-chart-pie"></i> Customer Feedback</a>
+        <a href="#settings"><i class="fas fa-cogs"></i> Settings</a>
+        <a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
-    <script src="../assets/js/global.js"></script>
-    <script>
-        // Placeholder function to handle feedback submission
-        function submitFeedback() {
-            const customerId = document.getElementById('customerId').value;
-            const feedbackType = document.getElementById('feedbackType').value;
-            const feedbackText = document.getElementById('feedbackText').value;
-            
-            // Save feedback to backend (e.g., via AJAX or API request)
-            console.log('Feedback submitted:', { customerId, feedbackType, feedbackText });
-            alert('Feedback submitted successfully!');
-            // Reset form after submission
-            document.getElementById('feedbackForm').reset();
-        }
+     <!-- Sidebar Toggle Button (for mobile view) -->
+     <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
-        // Placeholder function to add an internal note
-        function addNote() {
-            const noteText = document.getElementById('noteText').value;
+
+
+    <div class="main-content">
+        <section class="feedback-page">
+            <header>
+                <h1>Customer Feedback</h1>
+                <!-- Filters and Sorting -->
+                <div class="search-filter-bar">
+                    <!-- Feedback Type Filter -->
+                    <select class="filter" id="feedback-type-filter">
+                        <option value="">All Feedback</option>
+                        <option value="positive">Positive</option>
+                        <option value="negative">Negative</option>
+                    </select>
+        
+                    <!-- Follow-Up Filter -->
+                    <select class="filter" id="follow-up-filter">
+                        <option value="">All Follow-Ups</option>
+                        <option value="followed-up">Follow-Up Made</option>
+                        <option value="not-followed-up">No Follow-Up</option>
+                    </select>
+        
+                    <!-- Resolution Filter -->
+                    <select class="filter" id="resolution-filter">
+                        <option value="">All Resolutions</option>
+                        <option value="resolved">Resolved</option>
+                        <option value="not-resolved">Not Resolved</option>
+                    </select>
+        
+                    <!-- Sort by Date -->
+                    <select class="filter" id="date-sort">
+                        <option value="recent">Most Recent</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+        
+                    <!-- Sort by Priority -->
+                    <select class="filter" id="priority-sort">
+                        <option value="high">High to Low</option>
+                        <option value="low">Low to High</option>
+                    </select>
+        
+                    <!-- Apply Filters Button -->
+                    <button class="btn btn-primary" onclick="applyFeedbackFilters()">Apply Filters</button>
+                </div>
+            </header>
+        
+            <!-- Feedback Table -->
+            <table class="feedback-table">
+                <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Name</th>
+                        <th>Date Received</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Priority</th>
+                        <th>Follow-Up</th>
+                        <th>Resolution</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="feedback-table-body">
+                    <!-- Feedback rows will be dynamically populated -->
+                </tbody>
+            </table>
+            <div id="description-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <p id="description-text"></p>
+                </div>
+            </div>
             
-            // Save note to backend (e.g., via AJAX or API request)
-            console.log('Note added:', { noteText });
-            alert('Note added successfully!');
-            // Reset form after submission
-            document.getElementById('notesForm').reset();
-        }
-    </script>
+        </section>
+        
+        
+    </div>
+    <script src="../assets/js/global.js"></script>
+    <script src="../assets/js/feedback_notes.js"></script>
 </body>
+
 </html>

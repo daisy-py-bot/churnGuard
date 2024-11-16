@@ -70,7 +70,7 @@ section {
 /* Tags Section */
 .tags-section button {
     display: inline-block;
-    margin-right: 8px;
+    margin: 8px;
     padding: 6px 12px;
     background-color: #28a745;
     color: #fff;
@@ -82,3 +82,18 @@ section {
 .tags-section button:hover {
     background-color: #218838;
 }
+
+.contact-icon {
+    margin-left: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+.contact-icon:hover {
+    color: #0056b3;
+}
+
+
+

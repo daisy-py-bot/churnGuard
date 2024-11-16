@@ -4,7 +4,7 @@
         labels: ["Savings Account", "Checking Account", "Credit Card"],
         datasets: [{
             label: 'Churn Prediction (%)',
-            data: [20, 35, 15], // Initial churn rates (adjust as needed)
+            data: [20, 35, 15], // Example starting values
             backgroundColor: ['#f44336', '#ffa726', '#42a5f5'],
         }]
     };
@@ -19,7 +19,7 @@
             scales: {
                 x: {
                     beginAtZero: true,
-                    max: 100 // Assume churn rate is a percentage (0-100%)
+                    max: 100 // Taking churn rate as a percentage (0-100%)
                 }
             },
             plugins: {
@@ -29,6 +29,7 @@
             }
         }
     });
+
 
     // Function to update the chart data at intervals
     function updateChartData() {
@@ -42,3 +43,21 @@
 
     // Set interval to update chart data every 5 seconds
     setInterval(updateChartData, 5000);
+
+
+
+
+    /// fetch the churn rate from the server
+        // Function to update the chart data at intervals
+    // function updateChartData() {
+    //     fetch('/api/churn-rate')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             customerServiceChart.data.datasets[0].data = [
+    //                 data.savingsAccount, // Savings Account churn rate
+    //                 data.checkingAccount, // Checking Account churn rate
+    //                 data.creditCard  // Credit Card churn rate
+    //             ];
+    //             customerServiceChart.update();
+    //         });
+    // }

@@ -22,7 +22,7 @@
 }
 
 /* Churn threshold slider styling */
-.high-risk-customers #churn-threshold {
+.high-risk-customers .churn-threshold {
     width: 100%;
     margin-bottom: 10px;
 }
@@ -70,6 +70,12 @@
 .high-risk-customers input[type="checkbox"] {
     width: 20px;
     height: 20px;
+}
+
+#high-risk-churn-threshold{
+    width: 20%;
+    text-align: center;
+
 }
 
 /* Responsive table styling for small devices */

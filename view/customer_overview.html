@@ -41,21 +41,45 @@
             <header>
                 <h1>Customer Overview</h1>
                 <div class="search-filter-bar">
-                    <input type="text" class="search-bar" placeholder="Search by customer name...">
-                    <select class="filter" id="risk-level-filter">
-                        <option value="">All Risks</option>
-                        <option value="low">Low Risk</option>
-                        <option value="medium">Medium Risk</option>
-                        <option value="high">High Risk</option>
-                    </select>
+                    <!-- Search by Name -->
+                    <input type="text" class="search-bar" placeholder="Search by customer name..." id="name-search">
+            
+                    <!-- Filter by Account Status -->
                     <select class="filter" id="status-filter">
-                        <option value="">All Statuses</option>
+                        <option value="">All Acc. Statuses</option>
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
                     </select>
-                    <button class="btn btn-primary" onclick="applyFilters()">Filter</button>
+            
+                    <!-- Filter by Risk Tag -->
+                    <select class="filter" id="risk-level-filter">
+                        <option value="">All Risks</option>
+                        <option value="low risk">Low Risk</option>
+                        <option value="medium risk">Medium Risk</option>
+                        <option value="high risk">High Risk</option>
+                    </select>
+            
+                    <!-- Filter by Location -->
+                    <select class="filter" id="location-filter">
+                        <option value="">All Locations</option>
+                        <option value="US">US</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+
+                    <!-- Filter by account type -->
+                    <select class="filter" id="account-filter">
+                        <option value="">All Accounts</option>
+                        <option value="Savings Account">Savings Account</option>
+                        <option value="Checking Account">Checking Account</option>
+                        <option value="Credit Card">Credit Card</option>
+                    </select>
+
+                    <!-- Filter Button -->
+                    <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
                 </div>
             </header>
+            
 
             <!-- Customer List Section -->
             <section class="customer-list">
@@ -63,44 +87,18 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Contact Info</th>
+                            <th>Location</th>
                             <th>Account Status</th>
+                            <th>Account Type</th>
                             <th>Churn Prediction</th>
                             <th>Tags</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="customer-table-body">
-                        <tr>
-                            <td data-label="Name">John Doe</td>
-                            <td data-label="Contact Info">john.doe@example.com</td>
-                            <td data-label="Account Status">Active</td>
-                            <td data-label="Churn Prediction">0.85</td>
-                            <td data-label="Tags"><span class="tag medium-risk">Medium Risk</span></td>
-                            <td data-label="Actions"><a href="#/customer-detail/1">View Details</a></td>
-                        </tr>
-
-                        <tr>
-                            <td data-label="Name">John Doe</td>
-                            <td data-label="Contact Info">john.doe@example.com</td>
-                            <td data-label="Account Status">Active</td>
-                            <td data-label="Churn Prediction">0.85</td>
-                            <td data-label="Tags"><span class="tag medium-risk">Medium Risk</span></td>
-                            <td data-label="Actions"><a href="#/customer-detail/1">View Details</a></td>
-                        </tr>
-
-                        <tr>
-                            <td data-label="Name">John Doe</td>
-                            <td data-label="Contact Info">john.doe@example.com</td>
-                            <td data-label="Account Status">Active</td>
-                            <td data-label="Churn Prediction">0.85</td>
-                            <td data-label="Tags"><span class="tag medium-risk">Medium Risk</span></td>
-                            <td data-label="Actions"><a href="#/customer-detail/1">View Details</a></td>
-                        </tr>
-                    </tbody>
-                    
+                    <tbody id="customer-table-body"></tbody>
                 </table>
                 <button id="load-more" class="btn btn-secondary mt-3" onclick="loadMoreCustomers()">View More</button>
+                
             </section>
         </div>
     </div>

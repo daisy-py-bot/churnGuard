@@ -10,7 +10,7 @@ const high_risk_customer_data = [
 
 // Function to filter high-risk customers based on the threshold
 function filterHighRiskCustomers(threshold) {
-    return high_risk_customer_data.filter(customer => customer.churn > threshold);
+    return high_risk_customer_data.filter(customer => customer.churn >= threshold);
 }
 
 // Function to generate the table rows dynamically
@@ -25,17 +25,26 @@ function updateCustomerTable(threshold) {
         const row = document.createElement('tr');
 
         // Add customer details as table cells
+        // use customer id insted\ad
         row.innerHTML = `
             <td>${customer.name}</td>
             <td>${customer.ageGroup}</td>
+            <td>${customer.location}</td>
             <td>${(customer.churn * 100).toFixed(2)}%</td>
             <td>${customer.service}</td>
-            <td>${customer.location}</td>
-            <td><a href="mailto:${customer.name.toLowerCase()}@example.com">Initiate Contact</a></td>
+            <td>
+                <a href="customer_detail.html?name=${encodeURIComponent(customer.name)}" class="btn btn-info btn-sm">
+                    View Details
+                </a>
+            </td>
+
+            
+           
             <td>
                 <input type="checkbox" id="follow-up-${index}" ${customer.followUp ? 'checked' : ''} onchange="toggleFollowUp(${index})">
             </td>
         `;
+        //  <td><a href="mailto:${customer.name.toLowerCase()}@example.com">Initiate Contact</a></td>
         
         // Append the row to the table body
         tableBody.appendChild(row);
@@ -52,8 +61,8 @@ function toggleFollowUp(index) {
 updateCustomerTable(0.5);
 
 // Event listener to update the table when the threshold slider is changed
-document.getElementById('churn-threshold').addEventListener('input', (e) => {
+document.getElementById('high-risk-churn-threshold').addEventListener('input', (e) => {
     const threshold = parseFloat(e.target.value);
-    document.getElementById('threshold-value').textContent = threshold.toFixed(2);
+    document.getElementById('high-risk-threshold-value').textContent = threshold.toFixed(2);
     updateCustomerTable(threshold);
 });

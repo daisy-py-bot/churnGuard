@@ -146,4 +146,50 @@
     }
 }
 
+
+
+/* Follow-up Button Styling */
+.follow-up-btn {
+  margin-left: 5px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+/* Conditional Colors for Account Status */
+.active {
+  color: green;
+  font-weight: bold;
+}
+
+.inactive {
+  color: red;
+  font-weight: bold;
+}
+
+/* Risk Tag Styling */
+.tag {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.low-risk {
+  background-color: lightgreen;
+  color: darkgreen;
+}
+
+.medium-risk {
+  background-color: lightyellow;
+  color: orange;
+}
+
+.high-risk {
+  background-color: lightcoral;
+  color: darkred;
+}
+
+
   

@@ -1,0 +1,168 @@
+/* Main content styling */
+.main-content {
+    margin-left: 240px;
+    padding: 40px;
+    /* background-color: #f4f6f9;  */
+    background-color: #f4f4f9;
+}
+.search-filter-bar{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    padding: 5px;
+
+}
+.feedback-page {
+    padding: 20px;
+}
+
+.search-filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.feedback-table th,
+.feedback-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.feedback-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.feedback-table td button {
+    margin: 2px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.btn {
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+
+
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    /* margin-left: 240px; */
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* display: flex; */
+    /* justify-content: center; */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    margin: 10% auto;
+    width: 40%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+@media screen and (max-width: 768px) {
+    .main-content{
+        margin-left: 60px;
+        padding-right: 20px;
+    }
+}
+/* Responsive design: Mobile devices */
+@media only screen and (max-width: 1100px) {
+    .feedback-table {
+        width: 100%;
+        border: none;
+        font-size: 14px;
+    }
+
+    .feedback-table th, .feedback-table td {
+        padding: 8px;
+    }
+
+    /* Collapsing the table for small screens */
+    .feedback-table th:nth-child(9),
+    .feedback-table th:nth-child(2),
+    /* .feedback-table td:nth-child(2), */
+    .feedback-table th:nth-child(3),
+    /* .feedback-table td:nth-child(3), */
+    .feedback-table th:nth-child(4),
+    /* .feedback-table td:nth-child(4), */
+    .feedback-table th:nth-child(5),
+    /* .feedback-table td:nth-child(5), */
+    .feedback-table th:nth-child(6),
+    /* .feedback-table td:nth-child(6), */
+    .feedback-table th:nth-child(7),
+    /* .feedback-table td:nth-child(7), */
+    .feedback-table th:nth-child(8)
+    /* .feedback-table td:nth-child(8)  */
+    {
+        display: none; /* Hide columns for small screens */
+    }
+
+    .feedback-table th, .feedback-table td {
+        text-align: center;
+    }
+
+    .feedback-table .description-cell {
+        display: none; /* Hide descriptions on mobile */
+    }
+
+    /* Show row as blocks instead of a table */
+    .feedback-table tbody tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .feedback-table td {
+        display: block;
+        text-align: right;
+        padding: 5px;
+    }
+
+    .feedback-table td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-align: left;
+    }
+
+    /* Buttons in action column will stack vertically on mobile */
+    .feedback-table td button {
+        display: block;
+        width: 100%;
+        margin-top: 5px;
+    }
+}

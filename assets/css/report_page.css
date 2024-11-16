@@ -16,8 +16,15 @@ h1{
     gap: 20px;
 }
 
-.column-left, .column-right {
+/* .column-left, .column-right {
     width: 50%;
+} */
+
+.column-left {
+    width: 70%;
+}
+.column-right {
+    width: 30%;
 }
 
 /* Gauge Row Styling */
@@ -37,6 +44,8 @@ h1{
     margin: 0 auto;
     position: relative;
     background-color: aquamarine;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #churnRateText {

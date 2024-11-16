@@ -36,10 +36,19 @@
         <section class="customer-profile">
             <h2>Profile</h2>
             <p><strong>Name:</strong> John Doe</p>
-            <p><strong>Email:</strong> john.doe@example.com</p>
-            <p><strong>Phone:</strong> +123 456 7890</p>
+            <p><strong>Email:</strong> john.doe@example.com 
+                <a href="mailto:john.doe@example.com" class="contact-icon" title="Send Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </p>
+            <p><strong>Phone:</strong> +123 456 7890 
+                <a href="tel:+1234567890" class="contact-icon" title="Call Customer">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </p>
             <p><strong>Status:</strong> Active</p>
         </section>
+        
 
         <!-- Account History and Transaction Summary Section -->
         <section class="account-history">
@@ -96,15 +105,37 @@
         </section>
 
         <!-- Tags Section -->
-        <section class="tags-section">
+        <!-- <section class="tags-section">
             <h2>Tags</h2>
             <button type="button">High Risk</button>
             <button type="button">Medium Risk</button>
             <button type="button">Low Risk</button>
             <button type="button">VIP</button>
+        </section> -->
+
+        <section class="tags-section">
+            <h2>Tags</h2>
+            <div id="tag-container">
+                <!-- Tags will be dynamically generated here -->
+                <button type="button" class="tag">High Risk <span class="remove-tag" onclick="removeTag('High Risk')">&times;</span></button>
+                <button type="button" class="tag">Follow Up <span class="remove-tag" onclick="removeTag('Follow Up')">&times;</span></button>
+            </div>
+            <div class="add-tag-section">
+                <select id="new-tag" class="filter">
+                    <option value="" disabled selected>Add a Tag</option>
+                    <option value="High Risk">High Risk</option>
+                    <option value="Medium Risk">Medium Risk</option>
+                    <option value="Low Risk">Low Risk</option>
+                    <option value="VIP">VIP</option>
+                    <option value="Follow Up">Follow Up</option>
+                </select>
+                <button type="button" class="btn btn-primary" onclick="addTag()">Add Tag</button>
+            </div>
         </section>
+        
     </div>
 
     <script src="../assets/js/global.js"></script>
+    <script src="../assets/js/customer_detail.js"></script>
 </body>
 </html>

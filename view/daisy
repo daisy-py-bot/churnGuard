@@ -1,1 +1,44 @@
-hi 
+        <!-- High risk customers -->
+        <section>
+            <h1>High-Risk Customers</h1>
+            
+            <div class="high-risk-customers">
+                <div class="chart-container">
+                    <label for="churn-threshold">Set Churn Prediction Threshold (0-1):</label>
+                    <input type="range" class="churn-threshold" id="high-risk-churn-threshold" min="0.5" max="1" step="0.1" value="0.5">
+                    <span id="high-risk-threshold-value">0.50</span>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age Group</th>
+                            <th>Location</th>
+                            <th>Churn Prediction</th>
+                            <th>Service Type</th>
+                            <!-- <th>Contact</th> -->
+                            <th>Actions</th>
+                            <th>Follow-up</th>
+                        </tr>
+                    </thead>
+                    <tbody id="high-risk-table-body">
+                        <tr>
+                            <td data-label="Name">Alice</td>
+                            <td data-label="Age Group">25-34</td>
+                            <td data-label="Location">USA</td>
+                            <td data-label="Churn Prediction">0.8</td>
+                            <td data-label="Service Type">Savings Account</td>
+                            <!-- <td data-label="Contact"><a href="mailto:alice@example.com">Email</a></td> -->
+                            <td data-label="Actions"><a href="#/customer-detail/1">View Details</a></td>
+                            <td data-label="Follow-up"><input type="checkbox"></td>
+                        </tr>
+                        <!-- Repeat rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+            
+            
+
+        </section>
+        

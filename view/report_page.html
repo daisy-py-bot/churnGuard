@@ -67,9 +67,10 @@
 
 
                 <!-- Second Column -->
+                 <!-- Natural language processing will take care of this (screeening the top issues) -->
                 <div class="column-right">
                     <h5>Top Factors Contributing to Churn</h5>
-                    <div class="scrolling-factors">
+                    <div class="scrolling-factors" id="top-churn-predictors">
                         <div class="factor-bubble">Poor customer support</div>
                         <div class="factor-bubble">High fees</div>
                         <div class="factor-bubble">Limited branches</div>
@@ -118,58 +119,9 @@
             <h1 style="padding-top: 40px;">Customer Churn Prediction Analysis</h1>
             <div class="chart-container">
                 <label for="churn-threshold">Set Churn Prediction Threshold (0-1):</label>
-                <input type="range" id="churn-threshold" min="0" max="1" step="0.1" value="0.5">
+                <input type="range" class="churn-threshold" id="churn-threshold" min="0.5" max="1" step="0.1" value="0.5">
                 <span id="threshold-value">0.50</span>
                 <canvas id="customer-chart"></canvas>
-            </div>
-            
-        </section>
-
-
-        <!-- High risk customers -->
-        <section>
-            <div class="high-risk-customers">
-                <h5>High-Risk Customers</h5>
-                <input type="range" id="churn-threshold" min="0" max="1" step="0.1" value="0.5">
-                <span id="threshold-value">0.5</span>
-                
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Age Group</th>
-                            <th>Location</th>
-                            <th>Churn Prediction</th>
-                            <th>Service Type</th>
-                            <th>Contact</th>
-                            <th>Follow-up</th>
-                        </tr>
-                    </thead>
-                    <tbody id="high-risk-table-body">
-                        <tr>
-                            <td data-label="Name">Alice</td>
-                            <td data-label="Age Group">25-34</td>
-                            <td data-label="Location">USA</td>
-                            <td data-label="Churn Prediction">0.8</td>
-                            <td data-label="Service Type">Savings Account</td>
-                            <td data-label="Contact"><a href="mailto:alice@example.com">Email</a></td>
-                            <td data-label="Follow-up"><input type="checkbox"></td>
-                        </tr>
-                        <!-- Repeat rows as needed -->
-                    </tbody>
-                </table>
-            </div>
-            
-            
-
-        </section>
-        
-
-        <!-- Sentiment analysis -->
-        <section>
-            <div class="sentiment-trend-analysis">
-                <h5>Sentiment Trend Analysis</h5>
-                <canvas id="sentimentTrendChart"></canvas>
             </div>
             
         </section>
@@ -179,6 +131,28 @@
             <h2>Monthly Churn Rates</h2>
             <canvas id="monthlyChurnChart"></canvas>
         </section>
+
+
+
+        <!-- Sentiment analysis -->
+        <section>
+            <div class="sentiment-trend-analysis">
+                <h5>Sentiment Trend Analysis</h5>
+                <label for="yearFilter">Select Year:</label>
+                <select id="yearFilter">
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                </select>
+                <canvas id="sentimentTrendChart"></canvas>
+            </div>
+        </section>
+        
+        
+
+
+
+
 
 
         <!-- Model Performance Metrics -->
@@ -216,10 +190,12 @@
     <script src="../assets/js/customer_bubble_chart.js"></script>
     <!-- <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> -->
     <!-- <script src="../assets/js/map.js"></script> -->
-     <script src="../assets/js/high_risk_customers.js"></script>
+     <!-- <script src="../assets/js/high_risk_customers.js"></script> -->
+      <script src="../assets/js/model_perfomance.js"></script>
      <script src="../assets/js/sentiment_analysis.js"></script>
      <script src="../assets/js/past_churn_rate.js"></script>
      <script src="../assets/js/export_reports.js"></script>
+     <script src="../assets/js/get_churn_predictors.js"></script>
 
     
 </body>
