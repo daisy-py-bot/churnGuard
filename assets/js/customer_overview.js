@@ -1,34 +1,3 @@
-// function applyFilters() {
-//     // Get filter values
-//     const nameSearch = document.getElementById('name-search').value.toLowerCase();
-//     const statusFilter = document.getElementById('status-filter').value;
-//     const riskFilter = document.getElementById('risk-level-filter').value;
-//     const locationFilter = document.getElementById('location-filter').value;
-//     const accountFilter = document.getElementById('account-filter').value;
-
-//     // Get all rows in the customer table (you'll need to adjust this to match your table structure)
-//     const tableRows = document.querySelectorAll('#customerTable tbody tr');
-
-//     tableRows.forEach(row => {
-//         const name = row.querySelector('.customer-name').textContent.toLowerCase();
-//         const status = row.querySelector('.account-status').textContent.toLowerCase();
-//         const risk = row.querySelector('.risk-tag').textContent.toLowerCase();
-//         const location = row.querySelector('.location').textContent.toLowerCase();
-
-//         // Check if the row matches the filters
-//         const matchesName = name.includes(nameSearch) || !nameSearch;
-//         const matchesStatus = status === statusFilter || !statusFilter;
-//         const matchesRisk = risk === riskFilter || !riskFilter;
-//         const matchesLocation = location === locationFilter || !locationFilter;
-
-//         // Show or hide the row based on the filters
-//         if (matchesName && matchesStatus && matchesRisk && matchesLocation) {
-//             row.style.display = '';
-//         } else {
-//             row.style.display = 'none';
-//         }
-//     });
-// }
 
 
 const customerData = [

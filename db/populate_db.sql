@@ -1,71 +1,101 @@
--- Populate Regions table
-INSERT INTO Regions (RegionName, Country, RegionDescription, CustomerCount)
+-- Populating churnguard_regions
+INSERT INTO churnguard_regions (RegionName, Country, RegionDescription, CustomerCount)
 VALUES 
-('North America', 'USA', 'Includes all customers in North America', 1500),
-('Europe', 'Germany', 'Customers in Europe region', 1200),
-('Asia', 'India', 'Customers from the Indian subcontinent', 2000),
-('Africa', 'Nigeria', 'Customers from African countries', 800),
-('South America', 'Brazil', 'Customers in South American countries', 900);
+('North America', 'USA', 'Includes USA and Canada', 200),
+('Europe', 'Germany', 'Central European region', 150),
+('Asia Pacific', 'India', 'Asia Pacific region', 300),
+('Africa', 'South Africa', 'African continent', 100),
+('South America', 'Brazil', 'Latin American region', 50);
 
--- Populate Customers table
-INSERT INTO Customers (Name, Email, PasswordHash, PhoneNumber, Status, RegionID, Address, AccountType)
-VALUES 
-('Alice Johnson', 'alice@example.com', 'hashedpassword1', '123-456-7890', 'active', 1, '123 Elm St, NY', 'Savings'),
-('Bob Smith', 'bob@example.com', 'hashedpassword2', '234-567-8901', 'inactive', 2, '456 Oak St, Berlin', 'Checking'),
-('Charlie Davis', 'charlie@example.com', 'hashedpassword3', '345-678-9012', 'active', 3, '789 Pine St, Mumbai', 'Business'),
-('Dana Lee', 'dana@example.com', 'hashedpassword4', '456-789-0123', 'active', 4, '101 Maple St, Lagos', 'Savings'),
-('Eve Martin', 'eve@example.com', 'hashedpassword5', '567-890-1234', 'suspended', 5, '202 Birch St, Sao Paulo', 'Checking');
+-- Populating churnguard_customers
+INSERT INTO churnguard_customers (FirstName, LastName, Email, PhoneNumber, Address, DateOfBirth, RegionID)
+VALUES
+('John', 'Doe', 'john.doe@example.com', '+1-555-1234', '123 Main St, New York, NY', '1990-01-15', 1),
+('Jane', 'Smith', 'jane.smith@example.com', '+44-555-5678', '45 Baker St, London', '1985-03-22', 2),
+('Raj', 'Patel', 'raj.patel@example.com', '+91-555-8765', '12 MG Road, Bangalore', '1992-11-30', 3),
+('Thabo', 'Mokoena', 'thabo.mokoena@example.com', '+27-555-2345', '234 Main Road, Johannesburg', '1994-08-19', 4),
+('Maria', 'Lopez', 'maria.lopez@example.com', '+55-555-7890', '789 Avenida Paulista, Sao Paulo', '1988-12-02', 5);
 
--- Populate Employees table
-INSERT INTO Employees (Name, Email, PasswordHash, PhoneNumber, Status, RegionID, Address, Role, EmployeeIDNumber)
-VALUES 
-('John Doe', 'john.doe@bank.com', 'hashedpassword1', '123-321-4321', 'active', 1, '500 Bank St, NY', 'bank_employee', 'E001'),
-('Jane Smith', 'jane.smith@bank.com', 'hashedpassword2', '234-432-5432', 'inactive', 2, '600 Bank St, Berlin', 'manager', 'E002'),
-('Chris Brown', 'chris.brown@bank.com', 'hashedpassword3', '345-543-6543', 'active', 3, '700 Bank St, Mumbai', 'admin', 'E003'),
-('Diana White', 'diana.white@bank.com', 'hashedpassword4', '456-654-7654', 'active', 4, '800 Bank St, Lagos', 'bank_employee', 'E004'),
-('Kevin Green', 'kevin.green@bank.com', 'hashedpassword5', '567-765-8765', 'suspended', 5, '900 Bank St, Sao Paulo', 'manager', 'E005');
+-- Populating churnguard_customer_demographics
+INSERT INTO churnguard_customer_demographics (CustomerID, Age, Gender, IncomeLevel, AccountType, DateJoined)
+VALUES
+(1, 34, 'M', 'High', 'Checking', '2020-05-01'),
+(2, 39, 'F', 'Medium', 'Savings', '2018-02-15'),
+(3, 32, 'M', 'Medium', 'Business', '2021-07-10'),
+(4, 29, 'M', 'Low', 'Checking', '2022-06-05'),
+(5, 36, 'F', 'High', 'Savings', '2020-11-12');
 
--- Populate CustomerDemographics table
-INSERT INTO CustomerDemographics (CustomerID, Age, Gender, Region, IncomeLevel, AccountType, DateJoined)
-VALUES 
-(1, 28, 'F', 'North America', 'Medium', 'Savings', '2023-05-01'),
-(2, 34, 'M', 'Europe', 'High', 'Checking', '2022-08-15'),
-(3, 40, 'M', 'Asia', 'Low', 'Business', '2021-10-12'),
-(4, 29, 'F', 'Africa', 'Medium', 'Savings', '2023-01-20'),
-(5, 25, 'F', 'South America', 'Low', 'Checking', '2023-02-10');
+-- Populating churnguard_transactions
+INSERT INTO churnguard_transactions (CustomerID, TransactionAmount, TransactionType, BalanceAfterTransaction, BranchLocation)
+VALUES
+(1, 1000.00, 'Deposit', 5000.00, 'NYC Main Branch'),
+(2, 200.00, 'Withdrawal', 1500.00, 'London Central Branch'),
+(3, 500.00, 'Transfer', 3000.00, 'Bangalore Main Branch'),
+(4, 150.00, 'Deposit', 1200.00, 'Johannesburg East Branch'),
+(5, 800.00, 'Payment', 4000.00, 'Sao Paulo West Branch');
 
--- Populate Transactions table
-INSERT INTO Transactions (CustomerID, TransactionDate, TransactionAmount, TransactionType, BalanceAfterTransaction, BranchLocation)
-VALUES 
-(1, '2024-01-01', 100.00, 'Deposit', 500.00, 'New York Branch'),
-(2, '2024-01-02', 150.00, 'Withdrawal', 350.00, 'Berlin Branch'),
-(3, '2024-01-03', 200.00, 'Transfer', 800.00, 'Mumbai Branch'),
-(4, '2024-01-04', 50.00, 'Deposit', 150.00, 'Lagos Branch'),
-(5, '2024-01-05', 75.00, 'Payment', 275.00, 'Sao Paulo Branch');
+-- Populating churnguard_bank_issues
+INSERT INTO churnguard_bank_issues (IssueType, IssueDescription, IssueStatus, IssueDate, IssueResolvedDate, IssueResolvedBy)
+VALUES
+('Product', 'Customer unable to access mobile banking app.', 'Resolved', '2024-01-01', '2024-01-02', 'Admin 1'),
+('Service', 'Delayed response from customer support.', 'Unresolved', '2024-02-10', NULL, 'Admin 2'),
+('Billing', 'Incorrect charges on monthly statement.', 'Resolved', '2024-03-05', '2024-03-06', 'Admin 3'),
+('Other', 'ATM machine malfunctioned.', 'Unresolved', '2024-04-18', NULL, 'Admin 4'),
+('Product', 'Online banking transaction failed.', 'Resolved', '2024-05-25', '2024-05-26', 'Admin 5');
 
--- Populate CustomerFeedback table
-INSERT INTO CustomerFeedback (CustomerID, FeedbackText, SentimentScore, SentimentLabel, ResolvedStatus)
-VALUES 
-(1, 'Great service and easy to use!', 0.9, 'positive', 'resolved'),
-(2, 'Too many fees for transfers, not happy.', 0.3, 'negative', 'unresolved'),
-(3, 'Customer support was very helpful.', 0.8, 'positive', 'resolved'),
-(4, 'I had trouble accessing my account online.', 0.4, 'negative', 'unresolved'),
-(5, 'Excellent experience with the new app features.', 0.7, 'positive', 'resolved');
+-- Populating churnguard_customer_complaints
+INSERT INTO churnguard_customer_complaints (CustomerID, IssueID, ComplaintDate, ResolvedStatus, FollowUpStatus, FollowUpDate)
+VALUES
+(1, 1, '2024-01-01', 'Resolved', 'Completed', '2024-01-02'),
+(2, 2, '2024-02-10', 'Unresolved', 'Pending', NULL),
+(3, 3, '2024-03-05', 'Resolved', 'In Progress', '2024-03-06'),
+(4, 4, '2024-04-18', 'Unresolved', 'Pending', NULL),
+(5, 5, '2024-05-25', 'Resolved', 'Completed', '2024-05-26');
 
--- Populate ChurnPredictions table
-INSERT INTO ChurnPredictions (CustomerID, PredictionDate, ChurnProbability, RiskLevel, PredictionNotes, FollowUpStatus)
-VALUES 
-(1, '2024-01-01', 0.05, 'Low', 'Customer has been loyal for over a year.', 'Completed'),
-(2, '2024-01-02', 0.75, 'High', 'Multiple negative feedback received from this customer.', 'Pending'),
-(3, '2024-01-03', 0.1, 'Low', 'Recently made a large deposit, likely stable.', 'In Progress'),
-(4, '2024-01-04', 0.55, 'Medium', 'Frequent issues with login, potential risk.', 'Pending'),
-(5, '2024-01-05', 0.2, 'Low', 'Customer has shown interest in new features.', 'Completed');
 
--- Populate CustomerInteractions table
-INSERT INTO CustomerInteractions (CustomerID, InteractionDate, InteractionType, InteractionDescription, InteractionOutcome, FollowUpRequired, FollowUpDate)
-VALUES 
-(1, '2024-01-01', 'Call', 'Resolved account access issue.', 'Resolved', FALSE, NULL),
-(2, '2024-01-02', 'Email', 'Explained new transfer fees.', 'Escalated', TRUE, '2024-01-10'),
-(3, '2024-01-03', 'Meeting', 'Discussed new business loan options.', 'Resolved', FALSE, NULL),
-(4, '2024-01-04', 'Chat', 'Troubleshooted login issue.', 'Pending', TRUE, '2024-01-07'),
-(5, '2024-01-05', 'Call', 'Walked through app navigation changes.', 'Resolved', FALSE, NULL);
+-- Populating churnguard_churn_prediction
+INSERT INTO churnguard_churn_prediction (CustomerID, PredictionDate, ChurnProbability, RiskLevel, PredictionNotes)
+VALUES
+(1, '2024-06-01', 0.10, 'Low', 'Stable account with good history'),
+(2, '2024-06-02', 0.40, 'Medium', 'Frequent complaints, but good transactions'),
+(3, '2024-06-03', 0.60, 'High', 'Customer has had several unresolved issues'),
+(4, '2024-06-04', 0.20, 'Low', 'Positive feedback and consistent payments'),
+(5, '2024-06-05', 0.30, 'Medium', 'Medium satisfaction, good account activity');
+
+-- Populating churnguard_employees
+INSERT INTO churnguard_employees (FirstName, LastName, Email, Password, Role)
+VALUES
+('Alice', 'Johnson', 'alice.johnson@example.com', 'admin123', 'Admin'),
+('Bob', 'Martin', 'bob.martin@example.com', 'employee123', 'Employee'),
+('Charlie', 'Williams', 'charlie.williams@example.com', 'employee123', 'Employee'),
+('Diana', 'Taylor', 'diana.taylor@example.com', 'admin123', 'Admin'),
+('Edward', 'Brown', 'edward.brown@example.com', 'employee123', 'Employee');
+
+-- Populating churnguard_account_types
+INSERT INTO churnguard_account_types (AccountTypeName, InterestRate)
+VALUES
+('Savings', 2.5),
+('Checking', 1.0),
+('Business', 4.0),
+('Other', 0.5),
+('Savings', 2.8);
+
+-- Populating churnguard_customer_accounts
+INSERT INTO churnguard_customer_accounts (CustomerID, AccountTypeID, AccountNumber, Balance)
+VALUES
+(1, 1, 'ACC123456', 5000.00),
+(2, 2, 'ACC234567', 1500.00),
+(3, 3, 'ACC345678', 3000.00),
+(4, 2, 'ACC456789', 1200.00),
+(5, 1, 'ACC567890', 4000.00);
+
+-- Populating churnguard_customer_reviews
+INSERT INTO churnguard_customer_reviews (CustomerID, OverallSatisfaction, RecommendationLikelihood, AdditionalComments, SentimentLabel)
+VALUES
+(1, 5, 5, 'Excellent service, highly recommend.', 'Positive'),
+(2, 3, 3, 'Okay service, could improve.', 'Neutral'),
+(3, 2, 2, 'Very dissatisfied, will not recommend.', 'Negative'),
+(4, 4, 4, 'Good experience, minor issues with ATM.', 'Neutral'),
+(5, 5, 5, 'Fantastic experience, will definitely recommend.', "Positive");
+
+\

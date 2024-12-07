@@ -6,126 +6,112 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Feedback Form</title>
     <style>
-        /* Background for the form container */
-
+        /* Body Background */
         body {
-        background: linear-gradient(135deg, rgb(22, 59, 171), rgb(255, 0, 0));
-        color: #ffffff;
-        font-family: Arial, sans-serif;
-    }
-
-    .container {
-        background-color: rgba(255, 255, 255, 0.9);
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    h2.text-center {
-        color: rgb(22, 59, 171);
-        font-weight: bold;
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-    }
-
-    p.text-center {
-        color: rgb(100, 100, 100);
-        font-size: 1.2rem;
-    }
-
-
-    h3 {
-        color: rgb(22, 59, 171); /* Dark blue for headers */
-    }
-
-    .form-group label {
-        color: rgb(22, 59, 171); /* Dark blue for labels */
-    }
-
-    .btn-primary {
-        background-color: rgb(255, 0, 0);
-        border: none;
-    }
-
-    .btn-primary:hover {
-        background-color: rgb(200, 0, 0);
-    }
-
-        /* body {
-            background-color: #f8f9fa;
-            background-color: rgb(22, 59, 171);
-        } */
-        /* .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        } */
-        /* Style for the headings */
-        /* h3 {
-            color: black;
-            border-bottom: 2px solid #96b6d9;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-        } */
-        /* Input and textarea styling */
-        /* .form-control {
-            border-radius: 5px;
-            border: 1px solid #ced4da;
-        } */
-        /* Submit button styling */
-        /* .btn-primary {
-            background-color: #007bff;
-            border: none;
-            transition: background-color 0.3s;
-            width: 30%;
-            align-self: center;
+            background: linear-gradient(135deg, #1b2a49, #415a77);
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
-        .btn-primary:hover {
-            background-color: #0056b3;
-        } */
-        /* Label styling */
-        /* label {
-            font-weight: 600;
-            color: #495057;
-        } */
-        /* Section background */
+
+        /* Container */
+        .container {
+            background-color: #ffffff;
+            color: #333;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        /* Headers */
+        h2.text-center {
+            color: #003366; /* Bank-like blue */
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        p.text-center {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            color: #003366;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+            margin-bottom: 1rem;
+        }
+
+        /* Form Elements */
+        .form-group label {
+            color: #003366;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .form-control:focus {
+            border-color: #003366;
+            box-shadow: 0 0 5px rgba(0, 51, 102, 0.5);
+        }
+
+        /* Section Background */
         .section {
-            background-color: #e9f7fd;
-            padding: 20px;
+            background-color: #f8f9fa;
+            padding: 1.5rem;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+        }
+
+        /* Submit Button */
+        .btn-primary {
+            background-color: #003366;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #002244;
+        }
+
+        .btn-primary:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 51, 102, 0.7);
         }
     </style>
 </head>
 <body>
 
-    <div class="container my-5">
-        <h2 class="text-center mb-4">Bank of America</h2>
-        <p class='text-center mb-4' >We value your feedback!</p>
+    <div class="container">
+        <h2 class="text-center">Bank of America</h2>
+        <p class="text-center">We value your feedback! Help us improve our services.</p>
         <form action="/submit-feedback" method="POST">
             <!-- Personal Information -->
             <div class="section">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required placeholder="Daisy Tsenesa">
+                    <input type="text" class="form-control" id="name" name="name" required placeholder="Your Full Name">
                 </div>
-            
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required placeholder="daisy.tsenesa@gmail.com">
-                </div>
-            
-                <div class="form-group">
-                    <label for="feedbackMessage">Feedback Message</label>
-                    <textarea class="form-control" id="feedbackMessage" name="feedbackMessage" rows="4" required placeholder="Type.."></textarea>
+                    <input type="email" class="form-control" id="email" name="email" required placeholder="example@domain.com">
                 </div>
             </div>
-
-            <!-- Service Quality Feedback -->
-            <h3>Service Quality Feedback</h3>
+        
+            <!-- Feedback Section -->
             <div class="section">
+                <h3>Feedback</h3>
                 <div class="form-group">
-                    <label for="overallSatisfaction">How would you rate the quality of our service?</label>
+                    <label for="overallSatisfaction">How satisfied are you with our services?</label>
                     <select class="form-control" id="overallSatisfaction" name="overallSatisfaction" required>
                         <option value="1">1 - Very Poor</option>
                         <option value="2">2 - Poor</option>
@@ -134,92 +120,47 @@
                         <option value="5">5 - Excellent</option>
                     </select>
                 </div>
-
                 <div class="form-group">
-                    <label for="serviceSpeed">Was your issue resolved in a timely manner?</label>
-                    <select class="form-control" id="serviceSpeed" name="serviceSpeed" required>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            
-                <div class="form-group">
-                    <label for="customerSupportExperience">Please rate your customer support experience:</label>
-                    <select class="form-control" id="customerSupportExperience" name="customerSupportExperience" required>
-                        <option value="1">1 - Very Poor</option>
-                        <option value="2">2 - Poor</option>
-                        <option value="3">3 - Average</option>
-                        <option value="4">4 - Good</option>
-                        <option value="5">5 - Excellent</option>
-                    </select>
+                    <label for="feedbackMessage">Additional Comments</label>
+                    <textarea class="form-control" id="feedbackMessage" name="feedbackMessage" rows="4" placeholder="Let us know your thoughts..."></textarea>
                 </div>
             </div>
         
-            <!-- Product/Service Feedback -->
-            <h3>Product/Service Feedback</h3>
+            <!-- Issues Faced Section -->
+           <!-- Issues Section -->
             <div class="section">
+                <h3>Issues Faced</h3>
+                <p>Please select the issues you have faced while using our services:</p>
                 <div class="form-group">
-                    <label for="productQuality">How satisfied are you with the product's quality?</label>
-                    <select class="form-control" id="productQuality" name="productQuality" required>
-                        <option value="1">1 - Very Poor</option>
-                        <option value="2">2 - Poor</option>
-                        <option value="3">3 - Average</option>
-                        <option value="4">4 - Good</option>
-                        <option value="5">5 - Excellent</option>
-                    </select>
-                </div>
-            
-                <div class="form-group">
-                    <label for="productFeature">Is there any feature you think could be improved?</label>
-                    <textarea class="form-control" id="productFeature" name="productFeature" rows="4"></textarea>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="issueDelay" name="issues[]" value="Transaction delays">
+                        <label class="form-check-label" for="issueDelay">Transaction delays</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="issueFees" name="issues[]" value="Unexpected fees">
+                        <label class="form-check-label" for="issueFees">Unexpected fees</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="issueSupport" name="issues[]" value="Poor customer support">
+                        <label class="form-check-label" for="issueSupport">Poor customer support</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="issueAccess" name="issues[]" value="Issues with online banking">
+                        <label class="form-check-label" for="issueAccess">Issues with online banking</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="issueOther" name="issues[]" value="Other">
+                        <label class="form-check-label" for="issueOther">Other</label>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="otherIssueDescription">If Other, please describe:</label>
+                        <textarea class="form-control" id="otherIssueDescription" name="otherIssueDescription" rows="3" placeholder="Describe your issue here..."></textarea>
+                    </div>
                 </div>
             </div>
 
-            <!-- Experience/Interaction Feedback -->
-            <h3>Experience/Interaction Feedback</h3>
+            <!-- Recommendation -->
             <div class="section">
-                <div class="form-group">
-                    <label for="easeOfUse">How easy was it to find the information you needed on our website?</label>
-                    <select class="form-control" id="easeOfUse" name="easeOfUse" required>
-                        <option value="1">1 - Very Difficult</option>
-                        <option value="2">2 - Difficult</option>
-                        <option value="3">3 - Neutral</option>
-                        <option value="4">4 - Easy</option>
-                        <option value="5">5 - Very Easy</option>
-                    </select>
-                </div>
-            
-                <div class="form-group">
-                    <label for="navigationExperience">Was the user interface intuitive and easy to use?</label>
-                    <select class="form-control" id="navigationExperience" name="navigationExperience" required>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            
-                <div class="form-group">
-                    <label for="encounteredDifficulties">Did you encounter any difficulties while navigating our website?</label>
-                    <select class="form-control" id="encounteredDifficulties" name="encounteredDifficulties" required>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            </div>
-        
-            <!-- Customer Expectations -->
-            <h3>Customer Expectations</h3>
-            <div class="section">
-                <div class="form-group">
-                    <label for="expectations">How well did we meet your expectations?</label>
-                    <select class="form-control" id="expectations" name="expectations" required>
-                        <option value="1">1 - Not at all</option>
-                        <option value="2">2 - Below Expectations</option>
-                        <option value="3">3 - Met Expectations</option>
-                        <option value="4">4 - Exceeded Expectations</option>
-                        <option value="5">5 - Far Exceeded Expectations</option>
-                    </select>
-                </div>
-            
                 <div class="form-group">
                     <label for="recommendationLikelihood">How likely are you to recommend us to a friend or colleague?</label>
                     <select class="form-control" id="recommendationLikelihood" name="recommendationLikelihood" required>
@@ -231,9 +172,8 @@
                     </select>
                 </div>
             </div>
-
-            <!-- Follow-up Requests -->
-            <h3>Follow-up Requests</h3>
+        
+            <!-- Follow-up -->
             <div class="section">
                 <div class="form-group">
                     <label for="followUpContact">Would you like to be contacted about your feedback?</label>
@@ -242,22 +182,12 @@
                         <option value="no">No</option>
                     </select>
                 </div>
-            
-                <div class="form-group">
-                    <label for="contactMethod">Preferred method of contact?</label>
-                    <select class="form-control" id="contactMethod" name="contactMethod">
-                        <option value="email">Email</option>
-                        <option value="phone">Phone</option>
-                        <option value="text">Text</option>
-                        <option value="text">Not applicable</option>
-                    </select>
-                </div>
             </div>
-            
+        
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary mt-4 mx-auto d-block" style="width: 30%;">Submit Feedback</button>
-
+            <button type="submit" class="btn btn-primary d-block mx-auto">Submit Feedback</button>
         </form>
     </div>
+
 </body>
 </html>

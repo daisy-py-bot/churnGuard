@@ -1,107 +1,96 @@
+
+
 /* Sidebar Styling */
 .sidebar {
-    background-color: #333;
-    height: 100vh;
     position: fixed;
-    width: 250px;
-    color: white;
-    padding-top: 20px;
-    transition: all 0.3s ease;
-    border-radius: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.sidebar a {
-    color: white;
-    text-decoration: none;
-    padding: 15px;
-    display: block;
-    font-size: 1.1em;
-    margin: 5px 0;
-}
-
-.sidebar a:hover {
-    background-color: rgb(15, 42, 122);
-    text-decoration: none;
-}
-
-.sidebar i {
-    margin-right: 10px; /* Space between icon and text */
-}
-
-
-/* Media Queries for responsiveness */
-@media screen and (max-width: 768px) {
-    .sidebar {
-        width: 100%; /* Full width on smaller screens */
-        position: relative;
-        height: auto;
-        /* background-color: #2196F3; */
-    }
-
-    .sidebar a {
-        text-align: center; /* Center align links in the sidebar on small screens */
-    }
-
-
-    .sidebar {
-        display: none; /* Hide sidebar by default on small screens */
-    }
-
-    .sidebar.toggle {
-        display: block; /* Toggle the sidebar visibility when the 'toggle' class is added */
-    }
-
-    
-}
-
-@media screen and (max-width: 768px) {
-    .main-content{
-        margin-left: 60px;
-        padding: 0;
-    }
-}
-
-/* Button to toggle sidebar */
-.sidebar-toggle {
-    display: none; /* Hidden by default */
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #333;
-    color: white;
-    border: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
     padding: 10px;
-    cursor: pointer;
+    transition: width 0.3s;
+}
+.sidebar a {
+    display: block;
+    color: #ecf0f1;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+.sidebar a:hover {
+    background-color: #1c5691;
 }
 
-@media screen and (max-width: 768px) {
-    .sidebar-toggle {
-        display: block; /* Show toggle button on small screens */
+.sidebar h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #3498db;
+}
+
+.sidebar a .nav-text {
+    display: inline-block;
+    margin-left: 10px;
+}
+/* Main content area */
+.main-content {
+    margin-left: 200px;
+    padding: 20px;
+    transition: margin-left 0.3s;
+    background-color: #ecf0f1;
+}
+
+/* Hide text for screens smaller than 768px */
+@media (max-width: 768px) {
+    .sidebar a .nav-text {
+        display: none;
     }
-
+    .sidebar {
+        width: 70px;
+    }
+    .sidebar h3{
+        font-size: 8px;
+        /* display: none; */
+    }
+    .sidebar a {
+        justify-content: center; /* Center the icons */
+    }
+    .main-content {
+        margin-left: 70px;
+    }
 }
+
+
+
 
 
 
 
 /* Quick links */
-#quick-links-container{
+.quick-links-container{
     margin-top: 100px;
+    background-color: whitesmoke;
+    padding: 20px;
+    /* background-color: #d2d9da; */
 
 }
 .pill-links {
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 .pill-links .nav-link {
     border-radius: 50px; /* Make the pills rounded */
     font-size: 1.1em; /* Slightly larger text */
-    padding: 10px 20px; /* Add padding for better spacing */
-    background-color: rgb(207, 156, 156, 0.3);
+    padding: 8px 8px; /* Add padding for better spacing */
+    /* background-color: rgb(207, 156, 156, 0.3); */
+    background-color: #85929f;
     margin-right: 10px;
     margin-bottom: 10px;
+    color: #2c3e50;
 }
 .pill-links .nav-link:hover {
-    background-color: #ddd; /* Light hover effect */
+    background-color: #4d677a; /* Light hover effect */
 }

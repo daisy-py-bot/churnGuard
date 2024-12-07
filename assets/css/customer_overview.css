@@ -146,13 +146,12 @@
     }
 }
 
-
-
 /* Follow-up Button Styling */
 .follow-up-btn {
-  margin-left: 5px;
+  margin: 10px;
   padding: 2px 8px;
   font-size: 12px;
+
 }
 
 /* Conditional Colors for Account Status */

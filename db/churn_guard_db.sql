@@ -1,10 +1,10 @@
--- Database: churn_guard
-DROP DATABASE IF EXISTS churn_guard;
-CREATE DATABASE IF NOT EXISTS churn_guard;
-USE churn_guard;
+-- Drop existing database if it exists
+DROP DATABASE IF EXISTS churnguard;
+CREATE DATABASE IF NOT EXISTS churnguard;
+USE churnguard;
 
--- Create Regions table first, as it's referenced by both Customers and Employees
-CREATE TABLE Regions (
+-- Regions table for mapping customers
+CREATE TABLE churnguard_regions (
     RegionID INT PRIMARY KEY AUTO_INCREMENT,
     RegionName VARCHAR(100) NOT NULL,
     Country VARCHAR(100),
@@ -12,98 +12,124 @@ CREATE TABLE Regions (
     CustomerCount INT
 );
 
--- Create Customers table
-CREATE TABLE Customers (
+-- Customers table with reference to regions
+CREATE TABLE churnguard_customers (
     CustomerID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(255) NOT NULL,
-    Email VARCHAR(255) UNIQUE NOT NULL,
-    PasswordHash VARCHAR(255) NOT NULL,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    PhoneNumber VARCHAR(15),
+    Address TEXT,
+    DateOfBirth DATE,
+    RegionID INT,
     DateJoined TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     LastLogin TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PhoneNumber VARCHAR(15),
-    Status ENUM('active', 'inactive', 'suspended') DEFAULT 'active',
-    RegionID INT,
-    Address VARCHAR(255),
-    AccountType VARCHAR(50),
-    FOREIGN KEY (RegionID) REFERENCES Regions(RegionID)
+    FOREIGN KEY (RegionID) REFERENCES churnguard_regions(RegionID)
 );
 
--- Create Employees table
-CREATE TABLE Employees (
-    EmployeeID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(255) NOT NULL,
-    Email VARCHAR(255) UNIQUE NOT NULL,
-    PasswordHash VARCHAR(255) NOT NULL,
-    DateJoined TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    LastLogin TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PhoneNumber VARCHAR(15),
-    Status ENUM('active', 'inactive', 'suspended') DEFAULT 'active',
-    RegionID INT,
-    Address VARCHAR(255),
-    Role ENUM('bank_employee', 'manager', 'admin') NOT NULL, 
-    EmployeeIDNumber VARCHAR(255) UNIQUE NOT NULL, -- unique employee ID
-    FOREIGN KEY (RegionID) REFERENCES Regions(RegionID)
-);
-
--- Create CustomerDemographics table with reference to Customers
-CREATE TABLE CustomerDemographics (
+-- Demographic information for customers
+CREATE TABLE churnguard_customer_demographics (
     CustomerDemographicID INT PRIMARY KEY AUTO_INCREMENT,
     CustomerID INT NOT NULL,
     Age INT,
     Gender ENUM('M', 'F', 'Other'),
-    Region VARCHAR(50),
     IncomeLevel ENUM('Low', 'Medium', 'High'),
     AccountType ENUM('Savings', 'Checking', 'Business', 'Other'),
     DateJoined DATE,
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+    FOREIGN KEY (CustomerID) REFERENCES churnguard_customers(CustomerID)
 );
 
--- Create Transactions table with reference to CustomerDemographics
-CREATE TABLE Transactions (
+-- Transactions table with reference to customers and accounts
+CREATE TABLE churnguard_transactions (
     TransactionID INT PRIMARY KEY AUTO_INCREMENT,
     CustomerID INT NOT NULL,
-    TransactionDate DATE,
-    TransactionAmount DECIMAL(10, 2),
+    TransactionDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    TransactionAmount DECIMAL(15, 2),
     TransactionType ENUM('Deposit', 'Withdrawal', 'Payment', 'Transfer'),
-    BalanceAfterTransaction DECIMAL(10, 2),
+    BalanceAfterTransaction DECIMAL(15, 2),
     BranchLocation VARCHAR(100),
-    FOREIGN KEY (CustomerID) REFERENCES CustomerDemographics(CustomerID)
+    FOREIGN KEY (CustomerID) REFERENCES churnguard_customers(CustomerID)
 );
 
--- Create CustomerFeedback table with reference to Customers
-CREATE TABLE CustomerFeedback (
-    FeedbackID INT PRIMARY KEY AUTO_INCREMENT,
+-- Bank Issues table where admin logs issues
+CREATE TABLE churnguard_bank_issues (
+    IssueID INT PRIMARY KEY AUTO_INCREMENT,
+    IssueType ENUM('Product', 'Service', 'Billing', 'Other'),
+    IssueDescription VARCHAR(255),
+    IssueStatus ENUM('Resolved', 'Unresolved') DEFAULT 'Unresolved',
+    IssueDate DATE,
+    IssueResolvedDate DATE,
+    IssueResolvedBy VARCHAR(255)
+);
+
+-- Complaints table linking customers to issues they face
+CREATE TABLE churnguard_customer_complaints (
+    ComplaintID INT PRIMARY KEY AUTO_INCREMENT,
     CustomerID INT NOT NULL,
-    FeedbackText TEXT NOT NULL,
-    SentimentScore DECIMAL(3, 2),
-    SentimentLabel ENUM('negative', 'neutral', 'positive'),
-    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ResolvedStatus ENUM('resolved', 'unresolved') DEFAULT 'unresolved',
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+    IssueID INT NOT NULL,
+    ComplaintDate DATE,
+    ResolvedStatus ENUM('Resolved', 'Unresolved') DEFAULT 'Unresolved',
+    FollowUpStatus ENUM('Pending', 'In Progress', 'Completed'),
+    FollowUpDate DATE,
+    FOREIGN KEY (CustomerID) REFERENCES churnguard_customers(CustomerID),
+    FOREIGN KEY (IssueID) REFERENCES churnguard_bank_issues(IssueID)
 );
 
--- Create ChurnPredictions table with reference to CustomerDemographics
-CREATE TABLE ChurnPredictions (
+
+-- Churn Prediction table to track customer churn risk
+CREATE TABLE churnguard_churn_prediction (
     PredictionID INT PRIMARY KEY AUTO_INCREMENT,
     CustomerID INT NOT NULL,
     PredictionDate DATE,
     ChurnProbability DECIMAL(3, 2),
     RiskLevel ENUM('Low', 'Medium', 'High'),
     PredictionNotes VARCHAR(255),
-    FollowUpStatus ENUM('Pending', 'In Progress', 'Completed'),
-    FOREIGN KEY (CustomerID) REFERENCES CustomerDemographics(CustomerID)
+    FOREIGN KEY (CustomerID) REFERENCES churnguard_customers(CustomerID)
 );
 
--- Create CustomerInteractions table with reference to CustomerDemographics
-CREATE TABLE CustomerInteractions (
-    InteractionID INT PRIMARY KEY AUTO_INCREMENT,
-    CustomerID INT NOT NULL,
-    InteractionDate DATE,
-    InteractionType ENUM('Call', 'Email', 'Meeting', 'Chat', 'Other'),
-    InteractionDescription VARCHAR(255),
-    InteractionOutcome ENUM('Resolved', 'Escalated', 'Pending'),
-    FollowUpRequired BOOLEAN,
-    FollowUpDate DATE,
-    FOREIGN KEY (CustomerID) REFERENCES CustomerDemographics(CustomerID)
+-- Employees table for managing user roles (admin/employee)
+CREATE TABLE churnguard_employees (
+    EmployeeID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Role ENUM('Employee', 'Admin') NOT NULL DEFAULT 'Employee',
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Account Types table (e.g., savings, checking)
+CREATE TABLE churnguard_account_types (
+    AccountTypeID INT AUTO_INCREMENT PRIMARY KEY,
+    AccountTypeName VARCHAR(50) NOT NULL,
+    InterestRate DECIMAL(5, 2),
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Customer accounts linked to account types
+CREATE TABLE churnguard_customer_accounts (
+    AccountID INT AUTO_INCREMENT PRIMARY KEY,
+    CustomerID INT NOT NULL,
+    AccountTypeID INT NOT NULL,
+    AccountNumber VARCHAR(20) UNIQUE NOT NULL,
+    Balance DECIMAL(15, 2) DEFAULT 0.00,
+    OpenedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (CustomerID) REFERENCES churnguard_customers(CustomerID),
+    FOREIGN KEY (AccountTypeID) REFERENCES churnguard_account_types(AccountTypeID)
+);
+
+-- Reviews table for customer satisfaction and likelihood to recommend
+CREATE TABLE churnguard_customer_reviews (
+    ReviewID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT NOT NULL,
+    OverallSatisfaction INT CHECK (OverallSatisfaction BETWEEN 1 AND 5),
+    RecommendationLikelihood INT CHECK (RecommendationLikelihood BETWEEN 1 AND 5),
+    AdditionalComments TEXT,
+    SentimentLabel ENUM()
+    FollowUpContact BOOLEAN DEFAULT FALSE,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (CustomerID) REFERENCES churnguard_customers(CustomerID)
+);
+
+
 

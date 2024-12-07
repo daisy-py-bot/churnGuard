@@ -8,6 +8,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Link to Font Awesome -->
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <style>
+            .header {
+            background-color: #34495e;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -24,6 +33,7 @@
         <a href="#settings"><i class="fas fa-cogs"></i> Settings</a>
         <a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
+    
 
     <!-- Sidebar Toggle Button (for mobile view) -->
     <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
@@ -35,10 +45,16 @@
         <h2>Welcome to Your Dashboard</h2>
         <p>Monitor customer insights and predict churn effectively.</p>
         <!-- Video Introduction -->
-        <video class="intro-video" controls>
-            <source src="path/to/your-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" 
+                        src="https://www.youtube.com/embed/IOdW3jompYw" 
+                        title="What is Customer Churn? And How It Can Affect Your Business" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                </iframe>
+        </div>
 
     </div>
 
