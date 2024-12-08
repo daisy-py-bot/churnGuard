@@ -7,6 +7,7 @@ function fetchUserStats() {
     fetch('../db/customer_stats.php')
         .then(response => response.json())
         .then(data => {
+            console.log('User stats:', data);
             // Update the HTML elements with the fetched data
             document.getElementById('total-customers').innerText = data.total_customers;
             document.getElementById('total-accounts').innerText = data.total_accounts;

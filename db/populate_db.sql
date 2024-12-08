@@ -62,6 +62,30 @@ VALUES
 (4, '2024-06-04', 0.20, 'Low', 'Positive feedback and consistent payments'),
 (5, '2024-06-05', 0.30, 'Medium', 'Medium satisfaction, good account activity');
 
+INSERT INTO churnguard_churn_prediction (CustomerID, PredictionDate, ChurnProbability, RiskLevel, PredictionNotes)
+VALUES
+(1, '2024-01-01', 0.10, 'Low', 'Stable account with good history'),
+(2, '2024-02-02', 0.40, 'Medium', 'Frequent complaints, but good transactions'),
+(3, '2024-03-03', 0.60, 'High', 'Customer has had several unresolved issues'),
+(4, '2024-04-04', 0.20, 'Low', 'Positive feedback and consistent payments'),
+(5, '2024-05-05', 0.30, 'Medium', 'Medium satisfaction, good account activity');
+
+INSERT INTO churnguard_churn_prediction (CustomerID, PredictionDate, ChurnProbability, RiskLevel, PredictionNotes)
+VALUES
+(1, '2024-06-01', 0.10, 'Low', 'Stable account with good history'),
+(2, '2024-07-02', 0.40, 'Medium', 'Frequent complaints, but good transactions'),
+(3, '2024-08-03', 0.60, 'High', 'Customer has had several unresolved issues'),
+(4, '2024-09-04', 0.20, 'Low', 'Positive feedback and consistent payments'),
+(5, '2024-10-05', 0.30, 'Medium', 'Medium satisfaction, good account activity');
+
+INSERT INTO churnguard_churn_prediction (CustomerID, PredictionDate, ChurnProbability, RiskLevel, PredictionNotes)
+VALUES
+(1, '2024-01-01', 0.10, 'Low', 'Stable account with good history'),
+(2, '2024-06-02', 0.40, 'Medium', 'Frequent complaints, but good transactions'),
+(3, '2024-11-03', 0.60, 'High', 'Customer has had several unresolved issues'),
+(4, '2024-12-04', 0.20, 'Low', 'Positive feedback and consistent payments'),
+(5, '2024-10-05', 0.30, 'Medium', 'Medium satisfaction, good account activity');
+
 -- Populating churnguard_employees
 INSERT INTO churnguard_employees (FirstName, LastName, Email, Password, Role)
 VALUES

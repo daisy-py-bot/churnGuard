@@ -69,8 +69,7 @@ h2 {
     height: 400px;
     margin: auto;
     overflow: hidden;
-    /* background: rgb(128, 128, 128, 0.7); */
-    background: black;
+    background: rgb(0, 0, 0, 0.8);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 1rem;
@@ -90,7 +89,7 @@ h2 {
 .feedback-item {
     padding: 1rem;
     border-radius: 15px;
-    font-size: 1.1rem;
+    font-size: 12px;
     width: 80%;
     max-width: 90%;
     margin: 0 auto;
@@ -101,13 +100,24 @@ h2 {
 
 /* Positive feedback styling */
 .positive-feedback {
-    background-color: rgb(80, 180, 135); /* Green background for positive feedback */
-    /* background-color: rgbx(2, 137, 2); */
+    background-color: #e8f9e8;  /* Light green */
+    border-left: 5px solid green;
+    color: #2d6a4f; /* Darker green text for contrast */
 }
 
 /* Negative feedback styling */
 .negative-feedback {
-    background-color: rgb(233, 105, 105); /* Red background for negative feedback */
+    /* background-color: rgb(233, 105, 105);  */
+    background-color: #f9e8e8;  /* Light red */
+    border-left: 5px solid red;
+    color: #b85c5c; /* Darker red text for contrast */
+}
+
+/* Neutral feedback */
+.neutral-feedback {
+    background-color: #f0f0f0;  /* Light gray */
+    border-left: 5px solid gray;
+    color: #6c6c6c; /* Dark gray text for contrast */
 }
 
 /* Adding a "tail" to the chat bubble */

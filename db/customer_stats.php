@@ -7,8 +7,8 @@ include 'config.php';
 // Start the session to check if the user is logged in
 session_start();
 
-// Check if the user is logged in (assuming 'user_id' is stored in session when logged in)
-if (!isset($_SESSION['user_id'])) {
+// Check if the user is logged in (assuming 'employeeID' is stored in session when logged in)
+if (!isset($_SESSION['employeeID'])) {
     // If the user is not logged in, return an error message
     // header("HTTP/1.1 401 Unauthorized");
     echo json_encode(["error" => "User is not logged in.", 'redirect' => '../view/login.html']);

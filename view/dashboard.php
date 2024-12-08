@@ -24,6 +24,8 @@
         <a href="admin_dashboard.html"><i class="fas fa-chart-pie"></i><span class="nav-text">Admin</span></a>
         <a href="#settings"><i class="fas fa-cogs"></i><span class="nav-text">Settings</span></a>
         <a href="#logout"><i class="fas fa-sign-out-alt"></i><span class="nav-text">Logout</span></a>
+        <a href="../index.php"><i class="fas fa-sign-out-alt"></i><span class="nav-text">Home</span></a>
+
     </div>
     
 
@@ -96,22 +98,6 @@
                 </div>
             </div>
 
-            <!-- Quick links to key parts of the website -->
-            <div class="quick-links-container">
-                <h2 class="mt-5">Quick Links</h2>
-                <!-- Pills with links -->
-                <ul class="nav nav-pills pill-links">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#at-risk-customers">At-Risk Customers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#customer-search">Customer Search</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#reports">Reports</a>
-                    </li>
-                </ul>
-            </div>
 
             <!-- Churn Prediction Summary: show the trend in the churn rate over a period of time-->
             <div class="widget">
@@ -141,29 +127,32 @@
                     </div>
                 </div>
             </div>
+
+                        <!-- Quick links to key parts of the website -->
+                        <div class="quick-links-container">
+                <h2 class="mt-5">Quick Links</h2>
+                <!-- Pills with links -->
+                <ul class="nav nav-pills pill-links">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#at-risk-customers">At-Risk Customers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#customer-search">Customer Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reports">Reports</a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Chart.js example for churn summary (mockup)
-        const ctx = document.getElementById('churnChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                datasets: [{
-                    label: 'Churn Rate',
-                    data: [3, 5, 2, 8, 6, 7],
-                    // backgroundColor: 'rgba(22, 59, 171, 0.2)',
-                    backgroundColor: '#f9f9f9',
-                    borderColor: 'rgb(22, 59, 171)',
-                    borderWidth: 2
-                }]
-            }
-        });
-    </script>
+    
+    <script src="../assets/js/churn_summary.js"></script>
     <script src="../assets/js/global.js"></script>
     <script src="../assets/js/customer_stats.js"></script>
+    <script src="../assets/js/customer_comments.js"></script>
 </body>
 </html>
