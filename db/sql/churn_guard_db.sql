@@ -125,7 +125,7 @@ CREATE TABLE churnguard_customer_reviews (
     OverallSatisfaction INT CHECK (OverallSatisfaction BETWEEN 1 AND 5),
     RecommendationLikelihood INT CHECK (RecommendationLikelihood BETWEEN 1 AND 5),
     AdditionalComments TEXT,
-    SentimentLabel ENUM()
+    SentimentLabel ENUM('positive', 'negative', 'neutral')
     FollowUpContact BOOLEAN DEFAULT FALSE,
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (CustomerID) REFERENCES churnguard_customers(CustomerID)

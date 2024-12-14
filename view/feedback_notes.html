@@ -34,19 +34,6 @@
                 <h1>Customer Feedback</h1>
                 <!-- Filters and Sorting -->
                 <div class="search-filter-bar">
-                    <!-- Feedback Type Filter -->
-                    <select class="filter" id="feedback-type-filter">
-                        <option value="">All Feedback</option>
-                        <option value="positive">Positive</option>
-                        <option value="negative">Negative</option>
-                    </select>
-        
-                    <!-- Follow-Up Filter -->
-                    <select class="filter" id="follow-up-filter">
-                        <option value="">All Follow-Ups</option>
-                        <option value="followed-up">Follow-Up Made</option>
-                        <option value="not-followed-up">No Follow-Up</option>
-                    </select>
         
                     <!-- Resolution Filter -->
                     <select class="filter" id="resolution-filter">
@@ -63,8 +50,10 @@
         
                     <!-- Sort by Priority -->
                     <select class="filter" id="priority-sort">
-                        <option value="high">High to Low</option>
-                        <option value="low">Low to High</option>
+                        <option value="Priority">Priority</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
                     </select>
         
                     <!-- Apply Filters Button -->
@@ -79,11 +68,10 @@
                         <th>Customer ID</th>
                         <th>Name</th>
                         <th>Date Received</th>
-                        <th>Type</th>
                         <th>Description</th>
                         <th>Priority</th>
-                        <th>Follow-Up</th>
                         <th>Resolution</th>
+                        <th>Resolved Date</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

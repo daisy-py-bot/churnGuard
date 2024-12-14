@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const result = await response.json();
 
             if (response.ok) {
+                form.reset(); 
                 alert(result.message);
                 if (result.redirect) {
                     window.location.href = result.redirect; // Redirect to the dashboard

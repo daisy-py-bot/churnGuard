@@ -1,10 +1,9 @@
 /* Main content styling */
-.main-content {
+/* .main-content {
     margin-left: 240px;
     padding: 40px;
-    /* background-color: #f4f6f9;  */
     background-color: #f4f4f9;
-}
+} */
 h1{
     /* margin-bottom: 20px; */
     text-align: center;
@@ -14,6 +13,10 @@ h1{
 .churn-overview-container {
     display: flex;
     gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 /* .column-left, .column-right {
@@ -21,37 +24,35 @@ h1{
 } */
 
 .column-left {
-    width: 70%;
+    width: 100%;
 }
 .column-right {
-    width: 30%;
+    width: 0%;
 }
 
-/* Gauge Row Styling */
 .gauge-row {
     margin-bottom: 20px;
     text-align: center;
-    /* background-color: rgb(138, 123, 151); */
 }
 
 
 .gauge-container {
-    position: relative;
+    /* position: relative; */
     text-align: center;
-    width: 80%;
-    /* height: 100px; */
+    /* width: 80%; */
     max-height: 400px;
     margin: 0 auto;
     position: relative;
-    /* background-color: aquamarine; */
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
 }
 
 #churnRateText {
     position: absolute;
     top: 30%;
-    left: 20%;
+    left: 40%;
     transform: translate(-50%, -50%);
     font-size: 1.5em;
     font-weight: bold;
@@ -66,7 +67,11 @@ h1{
     gap: 20px;
 }
 
-.customer-churn-prediction, .location-churn-prediction {
+#churnRateGauge{
+    max-height: 300px;
+}
+
+.customer-churn-prediction, .location-churn-prediction, .gauge-container, .sentiment-trend-analysis{
     flex: 1;
     padding: 15px;
     border: 1px solid #ddd;
@@ -75,9 +80,13 @@ h1{
     text-align: center;
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 20px;
-    background-color: rgb(67, 111, 150, 0.1);
+    /* background-color:rgb(67, 111, 150, 0.1) */
+    background-color: #737f8f;
+    /* background-color: #737f8f; */
+    /* margin-bottom: 40px; */
+    /* margin-top: 10px; */
 }
 
 

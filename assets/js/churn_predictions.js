@@ -34,8 +34,31 @@ let customerLocationChart = new Chart(customerLocationCtx, {
     },
     options: {
         indexAxis: 'y',
-        scales: { x: { beginAtZero: true, max: 100 } },
-        plugins: { legend: { display: false } }
+        scales: { 
+            x: { 
+                beginAtZero: true, 
+                max: 100,
+                ticks: {
+                    color: 'white' // Set x-axis label color to white
+            
+                } 
+            },
+            y: { 
+                ticks: {
+                    color: 'white' // Set x-axis label color to white
+            
+                } 
+            }  
+
+        },
+        plugins: { 
+            legend: { 
+                display: false 
+            },
+            labels: {
+                color: 'white' // Set legend label color to white
+            }
+        }
     }
 });
 
@@ -51,7 +74,22 @@ let customerServiceChart = new Chart(customerServiceCtx, {
     },
     options: {
         indexAxis: 'y',
-        scales: { x: { beginAtZero: true, max: 100 } },
+        scales: { 
+            x: { 
+                beginAtZero: true, 
+                max: 100,
+                ticks: {
+                    color: 'white' // Set x-axis label color to white
+            
+                } 
+            },
+            y: { 
+                ticks: {
+                    color: 'white' // Set x-axis label color to white
+            
+                } 
+            } 
+        },
         plugins: { legend: { display: false } }
     }
 });
