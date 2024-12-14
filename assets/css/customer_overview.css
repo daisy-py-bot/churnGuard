@@ -175,17 +175,17 @@
   text-transform: capitalize;
 }
 
-.low-risk {
+.low {
   background-color: lightgreen;
   color: darkgreen;
 }
 
-.medium-risk {
+.medium {
   background-color: lightyellow;
   color: orange;
 }
 
-.high-risk {
+.high {
   background-color: lightcoral;
   color: darkred;
 }

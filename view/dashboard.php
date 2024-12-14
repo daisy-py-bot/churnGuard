@@ -101,8 +101,8 @@
 
             <!-- Churn Prediction Summary: show the trend in the churn rate over a period of time-->
             <div class="widget">
-                <h4>Churn Prediction Summary</h4>
-                <p>Overview of customers at risk of churn.</p>
+                <h4>Real Churn Trend</h4>
+                <p>View the trend of the customers who have churned.</p>
                 <canvas id="churnChart"></canvas> <!-- Add chart.js or similar for charts -->
             </div>
 

@@ -1,3 +1,43 @@
+
+
+
+function applyFilters() {
+    // Get the values from the filter inputs
+    const nameSearch = document.getElementById('name-search').value.trim().toLowerCase();
+    const statusFilter = document.getElementById('status-filter').value;
+    const riskFilter = document.getElementById('risk-level-filter').value;
+    const locationFilter = document.getElementById('location-filter').value;
+    const accountFilter = document.getElementById('account-filter').value;
+
+    console.log("Filters applied:");
+    console.log("Name:", nameSearch);
+    console.log("Account Status:", statusFilter);
+    console.log("Risk Level:", riskFilter);
+    console.log("Location:", locationFilter);
+    console.log("Account Type:", accountFilter);
+
+    // Example: Filter the customer data (assuming `customerData` is your dataset)
+    const filteredData = customerData.filter(customer => {
+        return (
+            (!nameSearch || customer.name.toLowerCase().includes(nameSearch)) &&
+            (!statusFilter || customer.status.toLowerCase() === statusFilter) &&
+            (!riskFilter || customer.risk.toLowerCase() === riskFilter.toLowerCase()) &&
+            (!locationFilter || customer.location.toLowerCase() === locationFilter.toLowerCase()) &&
+            (!accountFilter || customer.accountType.toLowerCase() === accountFilter.toLowerCase())
+        );
+    });
+
+    // Call a function to update the table with the filtered data
+    populateCustomerTable(filteredData);
+}
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

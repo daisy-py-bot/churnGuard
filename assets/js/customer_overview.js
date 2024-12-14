@@ -1,37 +1,19 @@
 
 
-const customerData = [
-    {
-        name: "John Doe",
-        contact: "john.doe@example.com",
-        status: "Active",
-        accountType: "Checking Account",
-        churnPrediction: 0.85,
-        risk: "Medium Risk",
-        detailsLink: "#/customer-detail/1",
-        location: "Ghana"
-    },
-    {
-        name: "Jane Smith",
-        contact: "jane.smith@example.com",
-        status: "Inactive",
-        accountType: "Credit Card",
-        churnPrediction: 0.95,
-        risk: "High Risk",
-        detailsLink: "#/customer-detail/2",
-        location: "Zimbabwe"
-    },
-    {
-        name: "Alice Brown",
-        contact: "alice.brown@example.com",
-        status: "Active",
-        accountType: "Savings Account",
-        churnPrediction: 0.75,
-        risk: "Low Risk",
-        detailsLink: "#/customer-detail/3",
-        location: "US"
+// Fetch customer data from the server
+async function fetchCustomerData() {
+    try {
+        const response = await fetch('../db/view_customers.php'); // Adjust endpoint if needed
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const customers = await response.json();
+        return customers;
+    } catch (error) {
+        console.error('Error fetching customer data:', error);
+        return [];
     }
-];
+}
 
 // Function to dynamically populate the table
 function populateCustomerTable(customers) {
@@ -41,50 +23,42 @@ function populateCustomerTable(customers) {
     customers.forEach(customer => {
         const row = document.createElement('tr');
 
+        // console.log(customer.CustomerID)
+        let customer_id = customer.CustomerID
         row.innerHTML = `
-            <td data-label="Name">${customer.name}</td>
-            <td data-label="Location">${customer.location}</td>
+            <td data-label="Name">${customer.CustomerName}</td>
+            <td data-label="Location">${customer.Country || 'N/A'}</td>
             <td data-label="Account Status" style="color: ${
-                customer.status === 'Active' ? 'green' : 'red'
-            }">${customer.status}</td>
-            <td data-label="Account Type">${customer.accountType}</td>
-            <td data-label="Churn Prediction">${customer.churnPrediction}</td>
+                customer.account_status === 'Active' ? 'green' : 'red'
+            }">${customer.account_status || 'N/A'}</td>
+            <td data-label="Account Type">${customer.AccountTypeName || 'N/A'}</td>
+            <td data-label="Churn Prediction">${customer.ChurnProbability || 'N/A'}</td>
             <td data-label="Tags">
                 <span class="tag ${
-                    customer.risk.toLowerCase().replace(' ', '-')
-                }">${customer.risk}</span>
-                <button class="btn btn-sm btn-primary follow-up-btn" onclick="followUp('${customer.name}')">Follow Up</button>
+                    customer.RiskLevel?.toLowerCase().replace(' ', '-') || ''
+                }">${customer.RiskLevel || 'N/A'}</span>
             </td>
-            <td data-label="Actions"><a href="${customer.detailsLink}">View Details</a></td>
+            
+
+            <td data-label="Actions">
+                <a href="../actions/get_customer_detail.php?customerID=${customer_id}">View Details</a>
+            </td>
+                        
+            
         `;
         tbody.appendChild(row);
     });
 }
 
 // Load more customers dynamically
-function loadMoreCustomers() {
-    const additionalCustomers = [
-        {
-            name: "Chris Evans",
-            contact: "chris.evans@example.com",
-            status: "Inactive",
-            accountType: "Savings Account",
-            churnPrediction: 0.88,
-            risk: "High Risk",
-            detailsLink: "#/customer-detail/4"
-        },
-        {
-            name: "Natasha Romanoff",
-            contact: "natasha.romanoff@example.com",
-            status: "Active",
-            accountType: "Credit Card",
-            churnPrediction: 0.60,
-            risk: "Medium Risk",
-            detailsLink: "#/customer-detail/5"
-        }
-    ];
-    customerData.push(...additionalCustomers);
-    populateCustomerTable(customerData);
+async function loadMoreCustomers() {
+    try {
+        const additionalCustomers = await fetchCustomerData(); // Fetch additional data
+        customerData.push(...additionalCustomers); // Add new customers to the existing array
+        populateCustomerTable(customerData);
+    } catch (error) {
+        console.error('Error loading more customers:', error);
+    }
 }
 
 // Follow-Up Action
@@ -93,43 +67,10 @@ function followUp(customerName) {
 }
 
 // Initial load
-document.addEventListener('DOMContentLoaded', () => {
-    populateCustomerTable(customerData);
+document.addEventListener('DOMContentLoaded', async () => {
+    const customers = await fetchCustomerData(); // Fetch data on initial load
+    populateCustomerTable(customers);
 });
-
-
-
-
-
-function applyFilters() {
-    // Get the values from the filter inputs
-    const nameSearch = document.getElementById('name-search').value.trim().toLowerCase();
-    const statusFilter = document.getElementById('status-filter').value;
-    const riskFilter = document.getElementById('risk-level-filter').value;
-    const locationFilter = document.getElementById('location-filter').value;
-    const accountFilter = document.getElementById('account-filter').value;
-
-    console.log("Filters applied:");
-    console.log("Name:", nameSearch);
-    console.log("Account Status:", statusFilter);
-    console.log("Risk Level:", riskFilter);
-    console.log("Location:", locationFilter);
-    console.log("Account Type:", accountFilter);
-
-    // Example: Filter the customer data (assuming `customerData` is your dataset)
-    const filteredData = customerData.filter(customer => {
-        return (
-            (!nameSearch || customer.name.toLowerCase().includes(nameSearch)) &&
-            (!statusFilter || customer.status.toLowerCase() === statusFilter) &&
-            (!riskFilter || customer.risk.toLowerCase() === riskFilter.toLowerCase()) &&
-            (!locationFilter || customer.location.toLowerCase() === locationFilter.toLowerCase()) &&
-            (!accountFilter || customer.accountType.toLowerCase() === accountFilter.toLowerCase())
-        );
-    });
-
-    // Call a function to update the table with the filtered data
-    populateCustomerTable(filteredData);
-}
 
 
 

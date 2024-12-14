@@ -43,7 +43,7 @@ h1{
     max-height: 400px;
     margin: 0 auto;
     position: relative;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -77,6 +77,7 @@ h1{
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
+    background-color: rgb(67, 111, 150, 0.1);
 }
 
 
