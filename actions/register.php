@@ -4,10 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Set headers
-header("Access-Control-Allow-Origin: localhost:3000");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+
 
 // Include database and object files
 include '../db/config.php';
@@ -29,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
+    // Validate email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo json_encode(["message" => "Invalid email format!"]);
         exit;
@@ -44,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->num_rows > 0) {
         echo json_encode([
             "success" => false,
-            "message" => "User already registered",
-            "redirect" => "../view/login.html"
+            "message" => "Email already exists",
+            "redirect" => "../view/register.html"
         ]);
         exit();
     }

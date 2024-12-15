@@ -46,6 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $row = $result->fetch_assoc();
 
             if (password_verify($password, $row['password'])) {
+                // update the last login time
+                $updateQuery = "UPDATE churnguard_employees SET lastLogin = NOW() WHERE employeeID = ?";
+                $stmt = $conn->prepare($updateQuery);
+                $stmt->bind_param("i", $row['employeeID']);
+                $stmt->execute();
+
+
                 // Regenerate session ID for security
                 session_regenerate_id(true);
                 $_SESSION['employeeID'] = $row['employeeID'];
@@ -84,5 +91,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     $conn->close();
+}
+else{
+    // Handle invalid request method
+    http_response_code(405);
+    echo json_encode(["message" => "Invalid request method"]);
 }
 ?>

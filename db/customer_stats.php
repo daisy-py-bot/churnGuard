@@ -31,12 +31,18 @@ $sql_avg_age = "SELECT AVG(TIMESTAMPDIFF(YEAR, DateOfBirth, CURDATE())) AS avg_a
 $sql_avg_churn_rate = "SELECT AVG(ChurnProbability) AS avg_churn_rate FROM churnguard_churn_prediction";
 $sql_avg_tenure = "SELECT AVG(TIMESTAMPDIFF(YEAR, DateJoined, CURDATE())) AS avg_tenure FROM churnguard_customers";
 
+// count the total number of employees
+$sql_total_employees = "SELECT COUNT(*) AS total_employees FROM churnguard_employees";
+
 // Execute queries and fetch data
 $total_customers_result = $conn->query($sql_total_customers);
 $total_accounts_result = $conn->query($sql_total_accounts);
 $avg_age_result = $conn->query($sql_avg_age);
 $avg_churn_rate_result = $conn->query($sql_avg_churn_rate);
 $avg_tenure_result = $conn->query($sql_avg_tenure);
+
+// count the total number of employees
+$total_employees_result = $conn->query($sql_total_employees);
 
 // Fetch the results
 $total_customers = (int)$total_customers_result->fetch_assoc()['total_customers'];
@@ -45,13 +51,17 @@ $avg_age = (int)round($avg_age_result->fetch_assoc()['avg_age']);  // Rounded to
 $avg_churn_rate = round($avg_churn_rate_result->fetch_assoc()['avg_churn_rate'] * 100, 2);  // Convert to percentage
 $avg_tenure = (int)round($avg_tenure_result->fetch_assoc()['avg_tenure']);  // Rounded to the nearest integer
 
+// Fetch the total number of employees
+$total_employees = (int)$total_employees_result->fetch_assoc()['total_employees'];
+
 // Prepare the response data
 $response = array(
     'total_customers' => $total_customers,
     'total_accounts' => $total_accounts,
     'avg_age' => $avg_age,
     'avg_churn_rate' => $avg_churn_rate,
-    'avg_tenure' => $avg_tenure
+    'avg_tenure' => $avg_tenure,
+    'total_employees' => $total_employees
 );
 
 // Send the response as JSON

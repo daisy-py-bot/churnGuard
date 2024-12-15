@@ -54,6 +54,13 @@ document.addEventListener("DOMContentLoaded", function () {
             const result = await response.json();
 
             if (response.ok) {
+                document.getElementById("firstname").value = '';
+                document.getElementById("lastname").value = '';
+                document.getElementById("email").value = '';
+                document.getElementById("password").value.trim();
+                document.getElementById("confirmPassword").value = '';
+                form.reset();
+                document.querySelector("form").reset();
                 alert(result.message);
                 if (result.redirect) {
                     window.location.href = result.redirect;

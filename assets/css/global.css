@@ -23,7 +23,7 @@
     border-radius: 10px;
 }
 .sidebar a:hover {
-    background-color: #1c5691;
+    background-color: #6789ac;
 }
 
 .sidebar h3 {
@@ -78,9 +78,7 @@
     /* background-color: #d2d9da; */
 
 }
-.pill-links {
-    /* margin-top: 20px; */
-}
+
 .pill-links .nav-link {
     border-radius: 50px; /* Make the pills rounded */
     font-size: 1.1em; /* Slightly larger text */
@@ -94,3 +92,5 @@
 .pill-links .nav-link:hover {
     background-color: #4d677a; /* Light hover effect */
 }
+
+

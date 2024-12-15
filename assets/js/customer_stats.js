@@ -14,6 +14,7 @@ function fetchUserStats() {
             document.getElementById('avg-age').innerText = data.avg_age + ' years';
             document.getElementById('churn-rate').innerText = data.avg_churn_rate + '%';
             document.getElementById('avg-tenure').innerText = data.avg_tenure + ' years';
+            document.getElementById('total-employees').innerText = data.total_employees;
         })
         .catch(error => {
             console.error('Error fetching user stats:', error);

@@ -7,85 +7,8 @@
     <title>ChurnGuard - Protect Your Customers</title>
     <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Custom styles */
-        body {
-            font-family: Arial, sans-serif;
-        }
+    <link href="assets/css/index.css" rel="stylesheet">
 
-        .navbar {
-            background-color: #2c3e50; /* Navy blue theme */
-        }
-
-        .navbar-brand,
-        .nav-link {
-            color: white !important;
-        }
-
-        .nav-link:hover {
-            text-decoration: underline;
-            color: #f4d03f !important; /* Gold accent */
-        }
-
-        .hero-section {
-            background-color: #ecf0f1; /* Light gray background */
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .hero-section img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .btn-primary {
-            background-color: #2c3e50; /* Navy blue */
-            border-color: #2c3e50;
-        }
-
-        .btn-primary:hover {
-            background-color: #f4d03f; /* Gold accent */
-            border-color: #f4d03f;
-        }
-
-        .features-section {
-            background-color: #ffffff; /* White background for clarity */
-            padding: 40px 20px;
-        }
-
-        .features-section .feature-box {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .testimonials {
-            background-color: #bdc3c7; /* Soft gray */
-            color: #2c3e50; /* Navy blue text */
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .testimonials blockquote {
-            font-style: italic;
-        }
-
-        footer {
-            background-color: #2c3e50; /* Navy blue */
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
-        footer a {
-            color: #f4d03f; /* Gold accent */
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 
 <body>

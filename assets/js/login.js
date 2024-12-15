@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Get the form element
     const form = document.querySelector("form");
 
+    // Add an event listener to the form
     form.addEventListener("submit", async (event) => {
-        event.preventDefault(); // Prevent form submission
+        // Prevent the default form submission
+        event.preventDefault(); 
 
         // Retrieve input values
         const email = document.getElementById("email").value.trim();
@@ -14,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        // Validate the email address
         if (!validateEmail(email)) {
             alert("Please enter a valid email address.");
             return;
@@ -39,12 +43,21 @@ document.addEventListener("DOMContentLoaded", () => {
             const result = await response.json();
 
             if (response.ok) {
-                form.reset(); 
+
+                // reset the elements in the form
+                document.getElementById("email").value = "";
+                document.getElementById("password").value = "";
+
+                // Display the message from the server
                 alert(result.message);
+
+                // Redirect to the dashboard if login is successful
                 if (result.redirect) {
-                    window.location.href = result.redirect; // Redirect to the dashboard
+                    window.location.href = result.redirect; 
                 }
-            } else {
+            } 
+            else {
+                // Display an error message
                 alert(result.message || "Login failed. Please try again.");
             }
         } catch (error) {

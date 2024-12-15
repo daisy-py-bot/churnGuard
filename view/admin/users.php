@@ -1,3 +1,13 @@
+<?php
+    // Start session
+    session_start();
+
+    // Check if user is logged in
+    if(!isset($_SESSION['employeeID'])){
+        header('Location: ../index.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,21 +21,22 @@
 </head>
 <body>
 
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h3 class="text-center py-4">Bank of America</h3>
-            <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span class="nav-text">Dashboard</span></a>
-            <a href="customer_overview.html"><i class="fas fa-tachometer-alt"></i><span class="nav-text">Customer Overview</span></a>
-            <a href="customer_detail.html"><i class="fas fa-comments"></i><span class="nav-text">Customer Details</span></a>
-            <a href="reports.html"><i class="fas fa-chart-line"></i><span class="nav-text">Reports</span></a>
-            <a href="report_page.html"><i class="fas fa-chart-line"></i><span class="nav-text">Reports</span></a>
-            <a href="feedback_notes.html"><i class="fas fa-chart-pie"></i><span class="nav-text">Customer Feedback</span></a>
-            <a href="admin_dashboard.html"><i class="fas fa-chart-pie"></i><span class="nav-text">Admin</span></a>
-            <a href="#settings"><i class="fas fa-cogs"></i><span class="nav-text">Settings</span></a>
-            <a href="../../actions/logout.php"><i class="fas fa-sign-out-alt"></i><span class="nav-text">Logout</span></a>
-            <a href="../index.php"><i class="fas fa-sign-out-alt"></i><span class="nav-text">Home</span></a>
-    
-        </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3 class="text-center py-4" style="color:gold;"><i>ChurnGuard</i> </h3>
+        <a href="../dashboard.php"><i class="fas fa-tachometer-alt"></i><span class="nav-text">Dashboard</span></a>
+        <a href="../customer_overview.php"><i class="fas fa-users"></i><span class="nav-text">Customer Overview</span></a>
+        <a href="../report_page.php"><i class="fas fa-chart-line"></i><span class="nav-text">Reports</span></a>
+        <a href="../feedback_notes.php"><i class="fas fa-comment-alt"></i><span class="nav-text">Customer Feedback</span></a>
+
+        <!-- show the users link of the user role is admin -->
+        <?php if($_SESSION['role'] == 'Admin') { ?>
+            <a href="#admin/users.php"><i class="fas fa-users-cog"></i><span class="nav-text">Users</span></a>
+        <?php } ?>
+
+        <a href="../../index.php"><i class="fas fa-home"></i><span class="nav-text">Home</span></a>
+        <a href="../../actions/logout.php"><i class="fas fa-sign-out-alt"></i><span class="nav-text">Logout</span></a>
+    </div>
         
     
     <div class="main-content">
