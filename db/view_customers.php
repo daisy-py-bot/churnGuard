@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         LEFT JOIN churnguard_account_types as at ON a.AccountTypeID = at.AccountTypeID
         LEFT JOIN churnguard_churn_prediction cp ON c.CustomerID = cp.CustomerID
         LEFT JOIN churnguard_customer_churns cc ON cc.CustomerID = c.CustomerID
+        GROUP BY c.CustomerID
         ORDER BY c.CustomerID;
     ";
 

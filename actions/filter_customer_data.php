@@ -7,6 +7,16 @@ error_reporting(E_ALL);
 // Include database connection
 include '../db/config.php';
 
+// Start the session to check if the user is logged in
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['employeeID'])) {
+    echo json_encode(["error" => "You need to be logged in to perform this action."]);
+    exit();
+}
+
+
 // Check if the request method is GET
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     echo json_encode(["error" => "Invalid request method. Only GET is allowed."]);

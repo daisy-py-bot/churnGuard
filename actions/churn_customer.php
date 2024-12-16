@@ -4,7 +4,7 @@
 include '../db/config.php';
 
 // check if the user is logged in
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['employeeID'])) {
     echo json_encode(["error" => "You need to be logged in to perform this action."]);
     exit();
 }

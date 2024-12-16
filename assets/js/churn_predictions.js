@@ -103,6 +103,9 @@ function fetchChurnData() {
             churnRateGauge.data.datasets[0].data = [data.overall, 100 - data.overall];
             churnRateGauge.update();
 
+            // update the front end text
+            document.getElementById('churnRateText').innerText = data.overall + '%';
+
             // Update location chart
             customerLocationChart.data.labels = Object.keys(data.byLocation);
             customerLocationChart.data.datasets[0].data = Object.values(data.byLocation);

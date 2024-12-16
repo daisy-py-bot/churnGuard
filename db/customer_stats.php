@@ -10,7 +10,6 @@ session_start();
 // Check if the user is logged in 
 if (!isset($_SESSION['employeeID'])) {
     // If the user is not logged in, return an error message
-    // header("HTTP/1.1 401 Unauthorized");
     echo json_encode(["error" => "User is not logged in.", 'redirect' => '../view/login.html']);
     exit();
 }
@@ -18,7 +17,6 @@ if (!isset($_SESSION['employeeID'])) {
 // Check if the request method is GET
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     // If the request method is not GET, return an error message
-    // header("HTTP/1.1 405 Method Not Allowed");
     echo json_encode(["error" => "Invalid request method. Only GET is allowed."]);
     exit();
 }

@@ -106,7 +106,7 @@ async function editUser(id) {
                 if (result.success) {
                     alert(result.message);
                     usernameSpan.textContent = newFirstname + " " + newLastname;
-                    renderUsers();
+                    // renderUsers();
                 } else {
                     alert("Failed to update user: " + result.message);
                 }

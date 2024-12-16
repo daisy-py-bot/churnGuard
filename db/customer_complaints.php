@@ -6,6 +6,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include 'config.php';
+
 // Start the session to check if the user is logged in
 session_start();
 
@@ -41,9 +42,9 @@ $query = "
         END AS resolved
     FROM 
         churnguard_customer_complaints cc
-    JOIN 
+    LEFT JOIN 
         churnguard_bank_issues bi ON cc.IssueID = bi.IssueID
-    JOIN 
+    LEFT JOIN 
         churnguard_customers c ON cc.CustomerID = c.CustomerID;
 ";
 

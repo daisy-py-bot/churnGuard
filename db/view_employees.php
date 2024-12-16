@@ -8,7 +8,16 @@ error_reporting(E_ALL);
 // Include configuration file
 include 'config.php';
 
-// check user role***
+// Start a session
+session_start();
+
+// check if user is logged in and they are an admin (role = admin)
+if (!isset($_SESSION['employeeID']) || $_SESSION['role'] !== 'Admin') {
+    // If the user is not logged in, return an error message
+    echo json_encode(["error" => "Unauthorized"]);
+    exit();
+}
+
 
 // check rquest method
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {

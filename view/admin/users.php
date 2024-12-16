@@ -4,7 +4,7 @@
 
     // Check if user is logged in
     if(!isset($_SESSION['employeeID'])){
-        header('Location: ../index.php');
+        header('Location: ../../index.php');
     }
 ?>
 
