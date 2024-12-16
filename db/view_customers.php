@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             r.Country,
             a.AccountNumber,
             a.account_status,
+            cc.status as churn_status, 
             at.AccountTypeName,
             a.Balance,
             cp.ChurnProbability,
@@ -43,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         LEFT JOIN churnguard_customer_accounts a ON c.CustomerID = a.CustomerID
         LEFT JOIN churnguard_account_types as at ON a.AccountTypeID = at.AccountTypeID
         LEFT JOIN churnguard_churn_prediction cp ON c.CustomerID = cp.CustomerID
+        LEFT JOIN churnguard_customer_churns cc ON cc.CustomerID = c.CustomerID
         ORDER BY c.CustomerID;
     ";
 

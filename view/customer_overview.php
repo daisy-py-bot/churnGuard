@@ -7,6 +7,9 @@
     if(!isset($_SESSION['employeeID'])){
         header('Location: ../index.php');
     }
+
+    // get user role
+    $role = $_SESSION['role'];
 ?>
 
 
@@ -45,6 +48,9 @@
 
     <!-- Main Content -->
     <div class="main-content">
+        <!-- embed role in a hidden div -->
+        <div id="user-role" data-role="<?php echo $role; ?>" style="display: none;"></div>
+        
         <div class="customer-overview">
             <header>
                 <h1>Customer Overview</h1>
@@ -54,23 +60,23 @@
             
                     <!-- Filter by Account Status -->
                     <select class="filter" id="status-filter">
-                        <option value="">All Acc. Statuses</option>
+                        <option value="">Churn Status</option>
                         <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
+                        <option value="churned">Churned</option>
                     </select>
             
                     <!-- Filter by Risk Tag -->
                     <select class="filter" id="risk-level-filter">
                         <option value="">All Risks</option>
-                        <option value="low risk">Low Risk</option>
-                        <option value="medium risk">Medium Risk</option>
-                        <option value="high risk">High Risk</option>
+                        <option value="low">Low Risk</option>
+                        <option value="medium">Medium Risk</option>
+                        <option value="high">High Risk</option>
                     </select>
             
                     <!-- Filter by Location -->
                     <select class="filter" id="location-filter">
                         <option value="">All Locations</option>
-                        <option value="US">US</option>
+                        <option value="US">USA</option>
                         <option value="Ghana">Ghana</option>
                         <option value="Zimbabwe">Zimbabwe</option>
                     </select>
@@ -78,9 +84,9 @@
                     <!-- Filter by account type -->
                     <select class="filter" id="account-filter">
                         <option value="">All Accounts</option>
-                        <option value="Savings Account">Savings Account</option>
-                        <option value="Checking Account">Checking Account</option>
-                        <option value="Credit Card">Credit Card</option>
+                        <option value="Savings">Savings Account</option>
+                        <option value="Checking">Checking Account</option>
+                        <option value="Credit">Credit Card</option>
                     </select>
 
                     <!-- Filter Button -->
@@ -96,16 +102,21 @@
                         <tr>
                             <th>Name</th>
                             <th>Location</th>
-                            <th>Account Status</th>
+                            <th>Churned Status</th>
                             <th>Account Type</th>
                             <th>Churn Prediction</th>
                             <th>Risk Level</th>
-                            <th>Actions</th>
+                            <!-- only show the actions for admin -->
+                            <?php if($_SESSION['role'] == 'Admin') { ?>
+                                <th>Actions</th>
+                            <?php } ?>
+
+                            <!-- <th>Actions</th> -->
                         </tr>
                     </thead>
                     <tbody id="customer-table-body"></tbody>
                 </table>
-                <button id="load-more" class="btn btn-secondary mt-3" onclick="loadMoreCustomers()">View More</button>
+                <!-- <button id="load-more" class="btn btn-secondary mt-3" onclick="loadMoreCustomers()">View More</button> -->
                 
             </section>
         </div>

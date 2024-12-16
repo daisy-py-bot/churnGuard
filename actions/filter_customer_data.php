@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 // Retrieve filter values from query string
 $filters = [
     'name' => isset($_GET['name']) ? trim($_GET['name']) : '',
-    'account_status' => isset($_GET['account_status']) ? trim($_GET['account_status']) : '',
+    'status' => isset($_GET['status']) ? trim($_GET['status']) : '',
     'risk' => isset($_GET['risk']) ? trim($_GET['risk']) : '',
     'region' => isset($_GET['region']) ? trim($_GET['region']) : '',
     'accountType' => isset($_GET['accountType']) ? trim($_GET['accountType']) : ''
@@ -24,7 +24,7 @@ $filters = [
 
 try {
     // Base query with necessary joins
-    $query = "SELECT 
+    $query = "SELECT DISTINCT
                 c.CustomerID,
                 CONCAT(c.FirstName, ' ', c.LastName) AS CustomerName,
                 c.Email,
@@ -32,12 +32,13 @@ try {
                 r.Country,
                 cp.RiskLevel,
                 a.AccountTypeName,
-                ca.account_status
+                cc.status as churn_status
             FROM churnguard_customers c
             LEFT JOIN churnguard_regions r ON c.RegionID = r.RegionID
             LEFT JOIN churnguard_churn_prediction cp ON c.CustomerID = cp.CustomerID
             LEFT JOIN churnguard_customer_accounts ca ON c.CustomerID = ca.CustomerID
             LEFT JOIN churnguard_account_types a ON ca.AccountTypeID = a.AccountTypeID
+            LEFT JOIN churnguard_customer_churns cc ON c.CustomerID = cc.CustomerID
             WHERE 1=1";
 
     // Prepare conditions and values dynamically
@@ -52,9 +53,9 @@ try {
         $types .= 's';
     }
 
-    if (!empty($filters['account_status'])) {
-        $conditions[] = "LOWER(ca.RiskLevel) = ?";
-        $values[] = strtolower($filters['account_status']);
+    if (!empty($filters['status'])) {
+        $conditions[] = "LOWER(cc.status) = ?";
+        $values[] = strtolower($filters['status']);
         $types .= 's';
     }
 

@@ -40,7 +40,7 @@ function renderFeedbackTable(data) {
                 <span class="resolved">${feedback.resolved ? "Resolved" : "Not Resolved"}</span> 
             </td>
             <td>${feedback.ResolvedDate ? feedback.ResolvedDate : "Unresolved"}</td
-            <td>
+            <td class="action-buttons">
                 <button class="btn btn-success" onclick="markResolved(${feedback.id})">Mark Resolved</button>
                 <select class="form-control" onchange="changePriority(${feedback.id}, this.value)">
                     <option value="Low" ${feedback.priority === "Low" ? "selected" : ""}>Low</option>

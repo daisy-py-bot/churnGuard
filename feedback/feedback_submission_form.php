@@ -13,7 +13,8 @@
     <div class="container">
         <h2 class="text-center">Bank of America</h2>
         <p class="text-center">We value your feedback! Help us improve our services.</p>
-        <form action="/submit-feedback" method="POST">
+        <form action="../actions/customer_feedback.php" method="POST">
+            <input type="hidden" name="CustomerID" value="1">
             <!-- Personal Information -->
             <div class="section">
                 <div class="form-group">
@@ -30,8 +31,8 @@
             <div class="section">
                 <h3>Feedback</h3>
                 <div class="form-group">
-                    <label for="overallSatisfaction">How satisfied are you with our services?</label>
-                    <select class="form-control" id="overallSatisfaction" name="overallSatisfaction" required>
+                    <label for="OverallSatisfaction">How satisfied are you with our services?</label>
+                    <select class="form-control" id="OverallSatisfaction" name="OverallSatisfaction" required>
                         <option value="1">1 - Very Poor</option>
                         <option value="2">2 - Poor</option>
                         <option value="3">3 - Average</option>
@@ -81,8 +82,8 @@
             <!-- Recommendation -->
             <div class="section">
                 <div class="form-group">
-                    <label for="recommendationLikelihood">How likely are you to recommend us to a friend or colleague?</label>
-                    <select class="form-control" id="recommendationLikelihood" name="recommendationLikelihood" required>
+                    <label for="RecommendationLikelihood">How likely are you to recommend us to a friend or colleague?</label>
+                    <select class="form-control" id="RecommendationLikelihood" name="RecommendationLikelihood" required>
                         <option value="1">1 - Not likely</option>
                         <option value="2">2 - Unlikely</option>
                         <option value="3">3 - Neutral</option>

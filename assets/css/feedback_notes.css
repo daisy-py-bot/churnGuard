@@ -1,9 +1,4 @@
-/* Main content styling */
-/* .main-content {
-    margin-left: 240px;
-    padding: 40px;
-    background-color: #f4f4f9;
-} */
+
 .search-filter-bar{
     display: flex;
     gap: 10px;
@@ -40,7 +35,7 @@
 }
 
 .feedback-table td button {
-    margin: 2px;
+    margin: 5px;
     padding: 5px 10px;
     cursor: pointer;
 }
@@ -150,6 +145,7 @@
         display: block;
         text-align: right;
         padding: 5px;
+        margin-bottom: 10px;
     }
 
     .feedback-table td:before {
@@ -164,4 +160,25 @@
         width: 100%;
         margin-top: 5px;
     }
+}
+
+/* Style for the action buttons container */
+.action-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    align-items: center;
+}
+
+/* Style for the buttons */
+.action-buttons .btn {
+    font-size: 12px; /* Smaller text size */
+    padding: 5px 10px; /* Smaller button size */
+    margin-bottom: 10px;
+}
+
+/* Style for the select dropdown */
+.action-buttons .form-control {
+    font-size: 12px; 
+    padding: 5px 10px; 
+    width: auto; 
 }

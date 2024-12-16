@@ -82,17 +82,21 @@
                         </div>
                     </div>
 
-                    <!-- show the employees card to the admin only -->
-                    <?php if($_SESSION['role'] == 'Admin') { ?>
-                        <!-- Total Employees Card -->
-                        <div class="card">
-                            <div class="card-content">
-                                <h3>Total Employees</h3>
-                                <p id="total-employees">0</p>
-                            </div>
+                    <!-- Average Age of Customers Card -->
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>Customer Average Age</h3>
+                            <p id="avg-age">35 years</p>
                         </div>
-                    <?php } ?>
-                    
+                    </div>
+
+                    <!-- Percentage of Customers by Location Card -->
+                    <div class="card">
+                            <div class="card-content">
+                                <h3>Average Tenure</h3>
+                                <p id="avg-tenure">5.2 years</p> <!-- Example: Average tenure is 5.2 years -->
+                            </div>
+                    </div>
                     
             
                     <!-- Total Accounts Card -->
@@ -103,29 +107,39 @@
                         </div>
                     </div>
             
-                    <!-- Average Age of Customers Card -->
-                    <div class="card">
-                        <div class="card-content">
-                            <h3>Customer Average Age</h3>
-                            <p id="avg-age">35 years</p>
-                        </div>
-                    </div>
+
             
                     <!-- Churn Rate Card -->
                     <div class="card">
                         <div class="card-content">
-                            <h3>Average Churn Rate</h3>
+                            <h3>Average Churn Prediction Rate</h3>
                             <p id="churn-rate">2.5%</p>
                         </div>
                     </div>
-            
-                    <!-- Percentage of Customers by Location Card -->
+
+                    <!-- Total Churned Customers Card -->
                     <div class="card">
-                            <div class="card-content">
-                                <h3>Average Tenure</h3>
-                                <p id="avg-tenure">5.2 years</p> <!-- Example: Average tenure is 5.2 years -->
-                            </div>
+                        <div class="card-content">
+                            <h3>Total Churned Customers</h3>
+                            <p id="total-churned-customers">0</p>
+                        </div>
                     </div>
+            
+
+
+
+                    <!-- show the employees card to the admin only -->
+                    <?php if($_SESSION['role'] == 'Admin') { ?>
+                        <!-- Total Employees Card -->
+                        <div class="card">
+                            <div class="card-content">
+                                <h3>Total Employees</h3>
+                                <p id="total-employees">0</p>
+                            </div>
+                        </div>
+                    <?php } ?>
+
+
                 </div>
             </div>
 

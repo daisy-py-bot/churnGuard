@@ -1,21 +1,25 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-include "config.php";
 
-// Get the raw POST data (assumes application/json content type)
-$data = json_decode(file_get_contents('php://input'), true);
+include "../db/config.php";
+
 
 // Validate required fields
-if (empty($data['CustomerID']) || empty($data['OverallSatisfaction']) || empty($data['RecommendationLikelihood'])) {
+if (empty($_POST['CustomerID']) || empty($_POST['OverallSatisfaction']) || empty($_POST['RecommendationLikelihood'])) {
     echo json_encode(['status' => 'error', 'message' => 'Missing required fields']);
     exit;
 }
 
-$customerID = $data['CustomerID'];
-$overallSatisfaction = $data['OverallSatisfaction'];
-$recommendationLikelihood = $data['RecommendationLikelihood'];
-$comments = $data['comments'] ?? '';
-$issues = $data['issues'] ?? [];
+
+$customerID = $_POST['CustomerID'] ?? null;
+$overallSatisfaction = $_POST['OverallSatisfaction'] ?? null;
+$recommendationLikelihood = $_POST['RecommendationLikelihood'] ?? null;
+$comments = $_POST['feedbackMessage'] ?? '';
+$issues = $_POST['issues'] ?? [];
+
 
 // Calculate sentiment label based on recommendation likelihood
 $sentimentLabel = 'Neutral'; // Default
@@ -68,7 +72,9 @@ foreach ($issues as $issue) {
     }
 }
 
-echo json_encode(['status' => 'success', 'message' => 'Feedback submitted successfully']);
+// echo json_encode(['status' => 'success', 'message' => 'Feedback submitted successfully']);
+// display the feedback message
+echo "<h1>Feedback submitted successfully</h1>";
 
 $conn->close();
 

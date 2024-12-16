@@ -28,7 +28,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <h3 class="text-center py-4" style="color:gold;"><i>ChurnGuard</i> </h3>
-        <a href="#dashboard.php"><i class="fas fa-tachometer-alt"></i><span class="nav-text">Dashboard</span></a>
+        <a href="dashboard.php"><i class="fas fa-tachometer-alt"></i><span class="nav-text">Dashboard</span></a>
         <a href="customer_overview.php"><i class="fas fa-users"></i><span class="nav-text">Customer Overview</span></a>
         <a href="report_page.php"><i class="fas fa-chart-line"></i><span class="nav-text">Reports</span></a>
         <a href="feedback_notes.php"><i class="fas fa-comment-alt"></i><span class="nav-text">Customer Feedback</span></a>
