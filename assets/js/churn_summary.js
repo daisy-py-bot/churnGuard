@@ -1,19 +1,3 @@
-// Chart.js example for churn summary (mockup)
-// const churn_summary = document.getElementById('churnChart').getContext('2d');
-// new Chart(churn_summary, {
-//     type: 'line',
-//     data: {
-//         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-//         datasets: [{
-//             label: 'Churn Rate',
-//             data: [3, 5, 2, 8, 6, 7],
-//             // backgroundColor: 'rgba(22, 59, 171, 0.2)',
-//             backgroundColor: '#f9f9f9',
-//             borderColor: 'rgb(22, 59, 171)',
-//             borderWidth: 2
-//         }]
-//     }
-// });
 
 
 document.addEventListener('DOMContentLoaded', function () {

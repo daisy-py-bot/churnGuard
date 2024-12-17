@@ -1,4 +1,8 @@
 <?php
+// display errors
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 include 'config.php';
 
@@ -23,15 +27,28 @@ $year = isset($_GET['year']) ? $_GET['year'] : date('Y');  // default to current
 
 // SQL query to get sentiment data by month
 $query = "
-    SELECT 
-        MONTHNAME(CreatedAt) AS month,
-        SUM(CASE WHEN SentimentLabel = 'positive' THEN 1 ELSE 0 END) AS positive,
-        SUM(CASE WHEN SentimentLabel = 'neutral' THEN 1 ELSE 0 END) AS neutral,
-        SUM(CASE WHEN SentimentLabel = 'negative' THEN 1 ELSE 0 END) AS negative
-    FROM churnguard_customer_reviews
-    WHERE YEAR(CreatedAt) = ?
-    GROUP BY MONTH(CreatedAt)
-    ORDER BY MONTH(CreatedAt);
+SELECT 
+    m.month_name AS month,
+    IFNULL(SUM(CASE WHEN SentimentLabel = 'positive' THEN 1 ELSE 0 END), 0) AS positive,
+    IFNULL(SUM(CASE WHEN SentimentLabel = 'neutral' THEN 1 ELSE 0 END), 0) AS neutral,
+    IFNULL(SUM(CASE WHEN SentimentLabel = 'negative' THEN 1 ELSE 0 END), 0) AS negative
+FROM 
+    (SELECT 1 AS month_num, 'January' AS month_name UNION ALL
+     SELECT 2, 'February' UNION ALL
+     SELECT 3, 'March' UNION ALL
+     SELECT 4, 'April' UNION ALL
+     SELECT 5, 'May' UNION ALL
+     SELECT 6, 'June' UNION ALL
+     SELECT 7, 'July' UNION ALL
+     SELECT 8, 'August' UNION ALL
+     SELECT 9, 'September' UNION ALL
+     SELECT 10, 'October' UNION ALL
+     SELECT 11, 'November' UNION ALL
+     SELECT 12, 'December') AS m
+LEFT JOIN churnguard_customer_reviews r 
+    ON MONTH(r.CreatedAt) = m.month_num AND YEAR(r.CreatedAt) = ?
+GROUP BY m.month_num, m.month_name
+ORDER BY m.month_num;
 ";
 
 // Prepare and bind the statement

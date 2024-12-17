@@ -120,7 +120,7 @@ function fetchChurnData() {
 }
 
 // Set interval to fetch data every 10 seconds
-setInterval(fetchChurnData, 10000);
+setInterval(fetchChurnData, 60000);
 
 // Fetch initial data
 fetchChurnData();

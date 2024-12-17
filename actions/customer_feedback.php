@@ -46,13 +46,31 @@ if (!$stmt->execute()) {
     exit;
 }
 
-// Insert churn prediction into `churnguard_churn_prediction` table
-$stmt = $conn->prepare("INSERT INTO churnguard_churn_prediction (CustomerID, ChurnProbability, RiskLevel, PredictionDate) VALUES (?, ?, ?, NOW())");
+// // Insert churn prediction into `churnguard_churn_prediction` table
+// $stmt = $conn->prepare("INSERT INTO churnguard_churn_prediction (CustomerID, ChurnProbability, RiskLevel, PredictionDate) VALUES (?, ?, ?, NOW())");
+// $stmt->bind_param("ids", $customerID, $churnProbability, $riskLevel);
+// if (!$stmt->execute()) {
+//     echo json_encode(['status' => 'error', 'message' => 'Failed to insert churn prediction']);
+//     exit;
+// }
+
+// Insert or update churn prediction into `churnguard_churn_prediction` table
+$stmt = $conn->prepare("
+    INSERT INTO churnguard_churn_prediction 
+        (CustomerID, ChurnProbability, RiskLevel, PredictionDate)
+    VALUES (?, ?, ?, NOW())
+    ON DUPLICATE KEY UPDATE
+        ChurnProbability = VALUES(ChurnProbability),
+        RiskLevel = VALUES(RiskLevel),
+        PredictionDate = NOW()
+");
 $stmt->bind_param("ids", $customerID, $churnProbability, $riskLevel);
+
 if (!$stmt->execute()) {
-    echo json_encode(['status' => 'error', 'message' => 'Failed to insert churn prediction']);
+    echo json_encode(['status' => 'error', 'message' => 'Failed to insert or update churn prediction']);
     exit;
 }
+
 
 // Insert customer issues into `churnguard_customer_complaints`
 foreach ($issues as $issue) {

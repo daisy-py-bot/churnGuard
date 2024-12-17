@@ -11,7 +11,7 @@
 <body>
 
     <div class="container">
-        <h2 class="text-center">Bank of America</h2>
+        <h2 class="text-center">Bank of Zimbabwe</h2>
         <p class="text-center">We value your feedback! Help us improve our services.</p>
         <form action="../actions/customer_feedback.php" method="POST">
             <input type="hidden" name="CustomerID" value="1">

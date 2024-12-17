@@ -40,14 +40,15 @@ function renderFeedbackTable(data) {
                 <span class="resolved">${feedback.resolved ? "Resolved" : "Not Resolved"}</span> 
             </td>
             <td>${feedback.ResolvedDate ? feedback.ResolvedDate : "Unresolved"}</td
+
             <td class="action-buttons">
-                <button class="btn btn-success" onclick="markResolved(${feedback.id})">Mark Resolved</button>
+                <button class="btn btn-success" onclick="markResolved(${feedback.id})">Resolved</button>
+                <button class="btn btn-danger" onclick="removeFeedback(${feedback.id})">Delete</button>
                 <select class="form-control" onchange="changePriority(${feedback.id}, this.value)">
                     <option value="Low" ${feedback.priority === "Low" ? "selected" : ""}>Low</option>
                     <option value="Medium" ${feedback.priority === "Medium" ? "selected" : ""}>Medium</option>
                     <option value="High" ${feedback.priority === "High" ? "selected" : ""}>High</option>
                 </select>
-                <button class="btn btn-danger" onclick="removeFeedback(${feedback.id})">Remove</button>
             </td>
 
 

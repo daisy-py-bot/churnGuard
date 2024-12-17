@@ -131,15 +131,18 @@ async function churnCustomer(customer_id) {
             body: JSON.stringify(requestBody),
         }
         );
-        if (!response.ok) {
-            throw new Error(`Failed to churn customer with ID: ${customer_id}`);
-        }
-        // update the churn status in the table
-        churnStatus.textContent = 'churned';
+        if (response.ok) {
+            // update the churn status in the table
+            churnStatus.textContent = 'churned';
 
-        // change the text color to red
-        churnStatus.style.color = 'red';
-        alert('Customer churned successfully');
+            // change the text color to red
+            churnStatus.style.color = 'red';
+            alert('Customer churned successfully');
+        }
+        else{
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         // location.reload(); // Reload the page to reflect the changes
     } catch (error) {
         console.error('Error churning customer:', error);

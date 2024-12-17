@@ -76,7 +76,7 @@
                     <!-- Filter by Location -->
                     <select class="filter" id="location-filter">
                         <option value="">All Locations</option>
-                        <option value="US">USA</option>
+                        <option value="USA">USA</option>
                         <option value="Ghana">Ghana</option>
                         <option value="Zimbabwe">Zimbabwe</option>
                     </select>

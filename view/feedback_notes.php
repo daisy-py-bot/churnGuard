@@ -90,6 +90,7 @@
                     <!-- Feedback rows will be dynamically populated -->
                 </tbody>
             </table>
+            
             <div id="description-modal" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeModal()">&times;</span>

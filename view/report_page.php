@@ -163,7 +163,6 @@
     <script src="../assets/js/churn_predictions.js"></script>
     <script src="../assets/js/customer_bubble_chart.js"></script>
      <script src="../assets/js/sentiment_analysis.js"></script>
-     <script src="../assets/js/get_churn_predictors.js"></script>
 
     
 </body>

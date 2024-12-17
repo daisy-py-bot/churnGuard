@@ -42,6 +42,7 @@ try {
                 r.Country,
                 cp.RiskLevel,
                 a.AccountTypeName,
+                cp.ChurnProbability,
                 cc.status as churn_status
             FROM churnguard_customers c
             LEFT JOIN churnguard_regions r ON c.RegionID = r.RegionID
@@ -76,7 +77,7 @@ try {
     }
 
     if (!empty($filters['region'])) {
-        $conditions[] = "LOWER(r.RegionName) = ?";
+        $conditions[] = "LOWER(r.Country) = ?";
         $values[] = strtolower($filters['region']);
         $types .= 's';
     }

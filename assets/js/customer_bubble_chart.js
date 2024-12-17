@@ -12,8 +12,7 @@ let customerChart = null; // Global variable to hold the chart instance
 const serviceColors = {
     'Savings': '#FFD700',  // Gold
     'Checking': '#32CD32', // Green
-    'Business': '#800080', // Purple
-    'Credit Card': '#42a5f5' // Light Blue (default, can be updated as needed)
+    'Credit Card': '#42a5f5' // Light Blue 
 };
 // Function to get the color for the service type (updated)
 const getColor = (service) => {

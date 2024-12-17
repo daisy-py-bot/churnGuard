@@ -35,10 +35,11 @@ if ($churnThreshold < 0 || $churnThreshold > 1) {
 // Query to fetch the required data
 $query = "
     SELECT 
+        c.CustomerID,
         CONCAT(c.FirstName, ' ', c.LastName) AS name,
         cp.ChurnProbability AS churn,
         TIMESTAMPDIFF(YEAR, c.DateJoined, CURRENT_TIMESTAMP) AS tenure,
-        r.OverallSatisfaction AS satisfaction,
+        AVG(r.OverallSatisfaction) AS satisfaction, -- Take average satisfaction
         rg.RegionName AS location,
         TIMESTAMPDIFF(YEAR, c.DateOfBirth, CURDATE()) AS ageGroup,
         GROUP_CONCAT(DISTINCT cat.AccountTypeName ORDER BY cat.AccountTypeName) AS service
@@ -57,7 +58,7 @@ $query = "
     WHERE 
         cp.ChurnProbability > ?
     GROUP BY 
-        c.CustomerID, cp.ChurnProbability, r.OverallSatisfaction, rg.RegionName;
+        c.CustomerID, cp.ChurnProbability, rg.RegionName, c.FirstName, c.LastName, c.DateJoined, c.DateOfBirth;
 ";
 
 // Execute the query
